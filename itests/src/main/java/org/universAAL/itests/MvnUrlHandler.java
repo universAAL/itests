@@ -15,7 +15,7 @@ import org.ops4j.util.property.PropertiesPropertyResolver;
 
 public class MvnUrlHandler extends Handler {
 
-    private boolean useOnlyLocalRepo;
+    private boolean useOnlyLocalRepo = false;
 
     private MavenSettings mavenSettings;
 
@@ -54,7 +54,11 @@ public class MvnUrlHandler extends Handler {
 		return null;
 	    } else {
 		String reposStr = mavenSettings.getRepositories();
-		String [] repos = reposStr.split(",");
+		/* quick fix related to pax runner implementation mistake */
+		if (!reposStr.contains("uaal")) {
+		    return "http://depot.universaal.org/maven-repo/releases/@id=uaal,http://depot.universaal.org/maven-repo/snapshots/@noreleases@id=uaal-snapshots@snapshots,http://depot.universaal.org/maven-repo/thirdparty/@id=uaal-thirdparty,http://depot.universaal.org/maven-repo/thirdparty/@id=iks-repository,http://osgi.sonatype.org/content/groups/pax-runner@id=paxrunner,http://repo1.maven.org/maven2@id=central,http://repository.ops4j.org/maven2@id=ops4j-releases,http://repository.springsource.com/maven/bundles/release@id=springsource-bundles-release,http://repository.springsource.com/maven/bundles/external@id=springsource-bundles-external";
+		}
+		String[] repos = reposStr.split(",");
 		StringBuilder modifiedRepos = null;
 		for (String repo : repos) {
 		    if (modifiedRepos == null) {
@@ -62,7 +66,7 @@ public class MvnUrlHandler extends Handler {
 		    } else {
 			modifiedRepos.append(',');
 		    }
-		    String [] repoSpecs = repo.split("@");
+		    String[] repoSpecs = repo.split("@");
 		    StringBuilder modifiedRepo = null;
 		    for (String repoSpec : repoSpecs) {
 			if (repoSpec.startsWith("id=")) {
@@ -75,7 +79,7 @@ public class MvnUrlHandler extends Handler {
 		    modifiedRepos.append(repo);
 		}
 		return modifiedRepos.toString();
-		//return reposStr;
+		// return reposStr;
 	    }
 	}
 
