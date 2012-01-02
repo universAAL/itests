@@ -295,6 +295,7 @@
 						<Bundle-Description>${project.description}</Bundle-Description>
 						<Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
 						<Export-Package>org.universAAL.itests</Export-Package>
+						<Private-Package>!org.universAAL.itests.aether.demo</Private-Package>
 						<Import-Package>!aQute.service.scripting, *</Import-Package>
 						<Embed-Dependency>pax-url-maven-commons, pax-url-mvn,
 							pax-url-wrap, pax-scanner-service, pax-scanner-composite,
