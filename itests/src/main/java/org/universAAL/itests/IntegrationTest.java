@@ -40,6 +40,7 @@ import org.springframework.core.io.UrlResource;
 import org.springframework.osgi.test.AbstractConfigurableBundleCreatorTests;
 import org.springframework.osgi.test.platform.Platforms;
 import org.springframework.util.Assert;
+import org.universAAL.itests.conf.IntegrationTestConsts;
 import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
@@ -69,7 +70,7 @@ public class IntegrationTest extends AbstractConfigurableBundleCreatorTests {
 
     private boolean runArgsAreSet = false;
 
-    private boolean useOnlyLocalRepo = false;
+    private Boolean useOnlyLocalRepo;
 
     private int logLevel = 4;
 
@@ -95,7 +96,10 @@ public class IntegrationTest extends AbstractConfigurableBundleCreatorTests {
      * Invoking noargument constructor indicates as follows:
      * <ul>
      * <li>Default uAAL rundir, deployed to the nexus, is used
-     * <li>The pax composite from project's artifact.composite is launched
+     * <li>The pax composite from project's target/artifact.composite file is
+     * launched. If target/artifact.composite is not present then
+     * artifact.composite in current directory (project's base directory) is
+     * launched.
      * <li>The following default uAAL run arguments are used:
      * <ul>
      * <li>-Dosgi.noShutdown=true
@@ -209,9 +213,18 @@ public class IntegrationTest extends AbstractConfigurableBundleCreatorTests {
      */
     private void setDefaults() {
 	try {
+	    if (useOnlyLocalRepo == null) {
+		useOnlyLocalRepo = true;
+	    }
 	    if (eclipseLaunchFile == null) {
 		if (paxArtifactsUrls == null) {
-		    setPaxArtifactUrls("file:artifact.composite");
+		    File generatedComposite = new File(IntegrationTestConsts.TEST_COMPOSITE);
+		    if (generatedComposite.exists()) {
+			useOnlyLocalRepo = true;
+			setPaxArtifactUrls("file:" + IntegrationTestConsts.TEST_COMPOSITE);
+		    } else {
+			setPaxArtifactUrls("file:artifact.composite");
+		    }
 		}
 		if (!runArgsAreSet) {
 		    setRunArguments("osgi.noShutdown", "true",
@@ -219,9 +232,9 @@ public class IntegrationTest extends AbstractConfigurableBundleCreatorTests {
 			    "org.universAAL.middleware.peer.is_coordinator",
 			    "true");
 		}
+		addProtocolHandlers();
 		if (bundlesConfLocation == null) {
-		    URL runDirURL = new URL(
-			    "mvn:org.universAAL.support/itests-default-rundir/0.1.1-SNAPSHOT/zip");
+		    URL runDirURL = new URL(IntegrationTestConsts.RUN_DIR_MVN_URL);
 		    unzipInpuStream(runDirURL.openStream(), DEFAULT_RUNDIR_TMP);
 		    bundlesConfLocation = DEFAULT_RUNDIR_TMP
 			    + "/rundir/confadmin";
@@ -651,7 +664,6 @@ public class IntegrationTest extends AbstractConfigurableBundleCreatorTests {
      */
     protected Resource[] getTestBundles() {
 	try {
-	    addProtocolHandlers();
 	    setDefaults();
 	    prepareClassesToTests();
 	    if (eclipseLaunchFile != null) {
