@@ -11,7 +11,7 @@
 	<packaging>bundle</packaging>
 	<artifactId>itests-conf</artifactId>
 	<version>1.0.1-SNAPSHOT</version>
-	<name>configuration of universAAL Integration Tests Framework</name>
+	<name>Configuration for universAAL Integration Tests Framework</name>
 	<description>Constants for confguration of Integration Tests Framework</description>
 	<url />
 
