@@ -214,14 +214,16 @@ public class IntegrationTest extends AbstractConfigurableBundleCreatorTests {
     private void setDefaults() {
 	try {
 	    if (useOnlyLocalRepo == null) {
-		useOnlyLocalRepo = true;
+		useOnlyLocalRepo = false;
 	    }
 	    if (eclipseLaunchFile == null) {
 		if (paxArtifactsUrls == null) {
-		    File generatedComposite = new File(IntegrationTestConsts.TEST_COMPOSITE);
+		    File generatedComposite = new File(
+			    IntegrationTestConsts.TEST_COMPOSITE);
 		    if (generatedComposite.exists()) {
 			useOnlyLocalRepo = true;
-			setPaxArtifactUrls("file:" + IntegrationTestConsts.TEST_COMPOSITE);
+			setPaxArtifactUrls("file:"
+				+ IntegrationTestConsts.TEST_COMPOSITE);
 		    } else {
 			setPaxArtifactUrls("file:artifact.composite");
 		    }
@@ -234,7 +236,8 @@ public class IntegrationTest extends AbstractConfigurableBundleCreatorTests {
 		}
 		addProtocolHandlers();
 		if (bundlesConfLocation == null) {
-		    URL runDirURL = new URL(IntegrationTestConsts.RUN_DIR_MVN_URL);
+		    URL runDirURL = new URL(
+			    IntegrationTestConsts.RUN_DIR_MVN_URL);
 		    unzipInpuStream(runDirURL.openStream(), DEFAULT_RUNDIR_TMP);
 		    bundlesConfLocation = DEFAULT_RUNDIR_TMP
 			    + "/rundir/confadmin";
@@ -666,11 +669,18 @@ public class IntegrationTest extends AbstractConfigurableBundleCreatorTests {
 	try {
 	    setDefaults();
 	    prepareClassesToTests();
+	    Resource[] testBundles = null;
 	    if (eclipseLaunchFile != null) {
-		return insertNeededDeps(processEclipseLaunhFile());
+		testBundles = insertNeededDeps(processEclipseLaunhFile());
 	    } else {
-		return insertNeededDeps(processPaxArtifactUrls());
+		testBundles = insertNeededDeps(processPaxArtifactUrls());
 	    }
+	    log("Following bundles are going to be installed in itests framework:");
+	    int i = 1;
+	    for (Resource bundle : testBundles) {
+		log(i++ + ". " + bundle.getDescription());
+	    }
+	    return testBundles;
 	} catch (RuntimeException ex) {
 	    ex.printStackTrace();
 	    throw ex;
