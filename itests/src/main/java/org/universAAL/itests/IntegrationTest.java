@@ -410,6 +410,12 @@ public class IntegrationTest extends AbstractConfigurableBundleCreatorTests {
 	mainAttribs.put(new Attributes.Name("Import-Package"), mainAttribs
 		.getValue("Import-Package")
 		+ ",org.universAAL.itests,org.springframework.util");
+	String dynamicImports = mainAttribs.getValue("DynamicImport-Package");
+	if (dynamicImports == null) {
+	    dynamicImports = "*";
+	    mainAttribs.put(new Attributes.Name("DynamicImport-Package"), dynamicImports);
+	}
+	
 	bundleMf.write(new FileOutputStream(
 		"./target/test-classes/META-INF/MANIFEST.MF"));
     }
