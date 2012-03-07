@@ -10,7 +10,7 @@
 	</parent>
 	<packaging>bundle</packaging>
 	<artifactId>itests-conf</artifactId>
-	<version>1.0.1-SNAPSHOT</version>
+	<version>1.1.0</version>
 	<name>Configuration for universAAL Integration Tests Framework</name>
 	<description>Constants for confguration of Integration Tests Framework</description>
 	<url />
