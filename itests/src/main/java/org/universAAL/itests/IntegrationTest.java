@@ -241,9 +241,9 @@ public class IntegrationTest extends AbstractConfigurableBundleCreatorTests {
 		    unzipInpuStream(runDirURL.openStream(), DEFAULT_RUNDIR_TMP);
 		    bundlesConfLocation = DEFAULT_RUNDIR_TMP
 			    + "/rundir/confadmin";
-		    setRunArguments("bundles.configuration.location",
-			    bundlesConfLocation);
 		}
+		setRunArguments("bundles.configuration.location",
+			bundlesConfLocation);		
 	    }
 	} catch (Exception ex) {
 	    ex.printStackTrace();
