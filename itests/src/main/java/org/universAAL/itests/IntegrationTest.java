@@ -78,6 +78,8 @@ public class IntegrationTest extends AbstractConfigurableBundleCreatorTests {
 
     private String DEFAULT_RUNDIR_TMP = "target";
 
+    private boolean ignoreVersionMismatch = false;
+
     /**
      * Symbolic name of bundle in which integration tests will be performed. The
      * name is extracted from manifest.
@@ -243,7 +245,7 @@ public class IntegrationTest extends AbstractConfigurableBundleCreatorTests {
 			    + "/rundir/confadmin";
 		}
 		setRunArguments("bundles.configuration.location",
-			bundlesConfLocation);		
+			bundlesConfLocation);
 	    }
 	} catch (Exception ex) {
 	    ex.printStackTrace();
@@ -317,6 +319,15 @@ public class IntegrationTest extends AbstractConfigurableBundleCreatorTests {
      */
     protected void setUseOnlyLocalRepo(boolean useOnlyLocalRepo) {
 	this.useOnlyLocalRepo = useOnlyLocalRepo;
+    }
+
+    /**
+     * If set to true than version mismatch between bundle version specified in
+     * pom and bundle version specified in the manifest is ignored.
+     * 
+     */
+    public void setIgnoreVersionMismatch(boolean ignoreVersionMismatch) {
+	this.ignoreVersionMismatch = ignoreVersionMismatch;
     }
 
     /**
@@ -413,9 +424,10 @@ public class IntegrationTest extends AbstractConfigurableBundleCreatorTests {
 	String dynamicImports = mainAttribs.getValue("DynamicImport-Package");
 	if (dynamicImports == null) {
 	    dynamicImports = "*";
-	    mainAttribs.put(new Attributes.Name("DynamicImport-Package"), dynamicImports);
+	    mainAttribs.put(new Attributes.Name("DynamicImport-Package"),
+		    dynamicImports);
 	}
-	
+
 	bundleMf.write(new FileOutputStream(
 		"./target/test-classes/META-INF/MANIFEST.MF"));
     }
@@ -436,15 +448,17 @@ public class IntegrationTest extends AbstractConfigurableBundleCreatorTests {
 	    if (bundleUrlArr != null && bundleUrlArr.length == 3) {
 		if (bundleUrlArr[1].equals(bundleSymbolicName)) {
 		    if (!bundleUrlArr[2].equals(bundleVersion)) {
-			String msg = String
-				.format(
-					"Version mismatch! The integration test is enclosed in bundle %s-%s but bundle %s is supposed to be launched.\n"
-						+ "If there is a need for integration testing of bundle %s then the test should be placed in bundle's source.\n"
-						+ "You can accept version mismatch by invoking setter method before the test but be aware that in such a case\n"
-						+ "source code that You see in your IDE is not the one that You are actually testing !!!",
-					bundleSymbolicName, bundleVersion, url,
-					url);
-			throw new IllegalStateException(msg);
+			if (!ignoreVersionMismatch) {
+			    String msg = String
+				    .format(
+					    "Version mismatch! The integration test is enclosed in bundle %s-%s but bundle %s is supposed to be launched.\n"
+						    + "If there is a need for integration testing of bundle %s then the test should be placed in bundle's source.\n"
+						    + "You can accept version mismatch by invoking setter method before the test but be aware that in such a case\n"
+						    + "source code that You see in your IDE is not the one that You are actually testing !!!",
+					    bundleSymbolicName, bundleVersion,
+					    url, url);
+			    throw new IllegalStateException(msg);
+			}
 		    }
 		    return null;
 		}
@@ -654,7 +668,7 @@ public class IntegrationTest extends AbstractConfigurableBundleCreatorTests {
 			new UrlResource(
 				"mvn:org.apache.commons/com.springsource.org.apache.commons.io/1.4.0"));
 	bundles.add(0, new UrlResource(
-		"mvn:org.universAAL.support/itests/1.1.0"));
+		"mvn:org.universAAL.support/itests/1.1.2-SNAPSHOT"));
 	bundles.add(0, new UrlResource(
 		"mvn:org.ops4j.pax.url/pax-url-wrap/1.3.5"));
 	bundles.add(0, new UrlResource(
