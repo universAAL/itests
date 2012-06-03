@@ -2,11 +2,13 @@ package org.universAAL.itests;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
@@ -409,6 +411,19 @@ public class IntegrationTest extends AbstractConfigurableBundleCreatorTests {
     private void prepareClassesToTests() throws Exception {
 	FileUtils.copyDirectory(new File("./target/classes"), new File(
 		"./target/test-classes"));
+	File separatedArtifactDepsFile = new File(
+		IntegrationTestConsts.SEPARATED_ARTIFACT_DEPS);
+	if (separatedArtifactDepsFile.exists()) {
+	    BufferedReader reader = new BufferedReader(new InputStreamReader(
+		    new FileInputStream(separatedArtifactDepsFile)));
+	    String line = null;
+	    while ((line = reader.readLine()) != null) {
+		if (!line.isEmpty()) {
+		    unzipInpuStream(new URL(line).openStream(), "target/test-classes");
+		}
+	    }
+	}	
+	
 	Manifest bundleMf = new Manifest(new FileInputStream(
 		"./target/classes/META-INF/MANIFEST.MF"));
 	Attributes mainAttribs = bundleMf.getMainAttributes();
@@ -668,9 +683,11 @@ public class IntegrationTest extends AbstractConfigurableBundleCreatorTests {
 			new UrlResource(
 				"mvn:org.apache.commons/com.springsource.org.apache.commons.io/1.4.0"));
 	bundles.add(0, new UrlResource(
-		"mvn:org.universAAL.support/itests/1.1.2-SNAPSHOT"));
+		"mvn:org.universAAL.support/itests/1.1.3-SNAPSHOT"));
 	bundles.add(0, new UrlResource(
 		"mvn:org.ops4j.pax.url/pax-url-wrap/1.3.5"));
+	bundles.add(0, new UrlResource(
+		"mvn:org.ops4j.pax.url/pax-url-mvn/1.3.5"));
 	bundles.add(0, new UrlResource(
 		"mvn:org.ops4j.pax.url/pax-url-mvn/1.3.5"));
 	return bundles.toArray(new Resource[bundles.size()]);
