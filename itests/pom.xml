@@ -15,6 +15,12 @@
 	<description>Framework used for automation of integration tests for universAAL platform</description>
 	<url />
 
+	<properties>
+		<mavenVersion>2.2.1</mavenVersion>
+		<maven.compile.source>1.5</maven.compile.source>
+		<maven.compile.target>1.5</maven.compile.target>
+	</properties>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.universAAL.middleware</groupId>
@@ -240,20 +246,6 @@
 
 	<build>
 		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>2.3.2</version>
-				<inherited>true</inherited>
-				<configuration>
-					<source>1.5</source>
-					<target>1.5</target>
-					<verbose>true</verbose>
-					<fork>true</fork>
-					<executable>${JAVA_HOME}/bin/javac</executable>
-					<compilerVersion>1.6</compilerVersion>
-				</configuration>
-			</plugin>
 			<plugin>
 				<groupId>org.apache.felix</groupId>
 				<artifactId>maven-bundle-plugin</artifactId>
