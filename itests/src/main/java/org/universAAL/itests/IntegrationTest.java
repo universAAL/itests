@@ -188,6 +188,11 @@ public class IntegrationTest extends AbstractConfigurableBundleCreatorTests {
 	    ZipEntry entry;
 	    while ((entry = zis.getNextEntry()) != null) {
 		System.out.println("Extracting: " + entry);
+		if (entry.getName().startsWith("META-INF")) {
+		    // META-INF (which includes MANIFEST) should not be
+		    // unpacked. It should be just ignored
+		    continue;
+		}
 		if (entry.isDirectory()) {
 		    File newDir = new File(destDir, entry.getName());
 		    newDir.mkdirs();
@@ -419,11 +424,12 @@ public class IntegrationTest extends AbstractConfigurableBundleCreatorTests {
 	    String line = null;
 	    while ((line = reader.readLine()) != null) {
 		if (!line.isEmpty()) {
-		    unzipInpuStream(new URL(line).openStream(), "target/test-classes");
+		    unzipInpuStream(new URL(line).openStream(),
+			    "target/test-classes");
 		}
 	    }
-	}	
-	
+	}
+
 	Manifest bundleMf = new Manifest(new FileInputStream(
 		"./target/classes/META-INF/MANIFEST.MF"));
 	Attributes mainAttribs = bundleMf.getMainAttributes();
