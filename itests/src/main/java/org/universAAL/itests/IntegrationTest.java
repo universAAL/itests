@@ -140,7 +140,7 @@ public class IntegrationTest extends AbstractConfigurableBundleCreatorTests {
      * @param bundlesConfLocation
      *            path to the uAAL runtime configuration directory.
      */
-    protected IntegrationTest(String eclipseLaunchFile) {
+    protected IntegrationTest(final String eclipseLaunchFile) {
 	this.eclipseLaunchFile = eclipseLaunchFile;
     }
 
@@ -149,11 +149,11 @@ public class IntegrationTest extends AbstractConfigurableBundleCreatorTests {
      * 
      * @param logMsg
      */
-    protected void log(String logMsg) {
+    protected void log(final String logMsg) {
 	System.out.println(logMsg);
     }
 
-    protected String formatMsg(String format, Object... args) {
+    protected String formatMsg(final String format, final Object... args) {
 	if (args != null) {
 	    return String.format(format, args);
 	} else {
@@ -179,7 +179,7 @@ public class IntegrationTest extends AbstractConfigurableBundleCreatorTests {
      * @param is
      * @param destDirStr
      */
-    private void unzipInpuStream(InputStream is, String destDirStr) {
+    private void unzipInpuStream(final InputStream is, final String destDirStr) {
 	try {
 	    File destDir = new File(destDirStr);
 	    final int BUFFER = 1024;
@@ -198,7 +198,7 @@ public class IntegrationTest extends AbstractConfigurableBundleCreatorTests {
 		    newDir.mkdirs();
 		} else {
 		    int count;
-		    byte data[] = new byte[BUFFER];
+		    byte[] data = new byte[BUFFER];
 		    // write the files to the disk
 		    FileOutputStream fos = new FileOutputStream(new File(
 			    destDir, entry.getName()));
@@ -271,7 +271,7 @@ public class IntegrationTest extends AbstractConfigurableBundleCreatorTests {
      * <ul>
      * Default value is LOG_DEBUG.
      */
-    protected void setLogLevel(int level) {
+    protected void setLogLevel(final int level) {
 	this.logLevel = level;
     }
 
@@ -283,7 +283,7 @@ public class IntegrationTest extends AbstractConfigurableBundleCreatorTests {
      *            even number of arguments. All odd strings are interpreted as
      *            keys and all even string are interpreted as values.
      */
-    protected void setRunArguments(String... args) {
+    protected void setRunArguments(final String... args) {
 	Assert.isTrue(args.length % 2 == 0, "");
 	for (int i = 0; i < args.length / 2; i++) {
 	    System.setProperty(args[i], args[i + 1]);
@@ -297,12 +297,12 @@ public class IntegrationTest extends AbstractConfigurableBundleCreatorTests {
      * @param p
      *            Properties which represent run arguments.
      */
-    protected void setRunArguments(Properties p) {
+    protected void setRunArguments(final Properties p) {
 	System.setProperties(p);
 	runArgsAreSet = true;
     }
 
-    protected void setPaxArtifactUrls(String... urls) {
+    protected void setPaxArtifactUrls(final String... urls) {
 	List<String> paxUrls = new ArrayList<String>();
 	for (String url : urls) {
 	    if (url.endsWith("composite")) {
@@ -314,7 +314,7 @@ public class IntegrationTest extends AbstractConfigurableBundleCreatorTests {
 	this.paxArtifactsUrls = paxUrls.toArray(new String[paxUrls.size()]);
     }
 
-    protected void setBundleConfLocation(String path) {
+    protected void setBundleConfLocation(final String path) {
 	this.bundlesConfLocation = path;
     }
 
@@ -324,7 +324,7 @@ public class IntegrationTest extends AbstractConfigurableBundleCreatorTests {
      * 
      * @param useOnlyLocalRepo
      */
-    protected void setUseOnlyLocalRepo(boolean useOnlyLocalRepo) {
+    protected void setUseOnlyLocalRepo(final boolean useOnlyLocalRepo) {
 	this.useOnlyLocalRepo = useOnlyLocalRepo;
     }
 
@@ -333,7 +333,7 @@ public class IntegrationTest extends AbstractConfigurableBundleCreatorTests {
      * pom and bundle version specified in the manifest is ignored.
      * 
      */
-    public void setIgnoreVersionMismatch(boolean ignoreVersionMismatch) {
+    public void setIgnoreVersionMismatch(final boolean ignoreVersionMismatch) {
 	this.ignoreVersionMismatch = ignoreVersionMismatch;
     }
 
@@ -345,7 +345,7 @@ public class IntegrationTest extends AbstractConfigurableBundleCreatorTests {
      * 
      */
     class BundleToLaunch {
-	BundleToLaunch(String bundleUrl, int runLevel) {
+	BundleToLaunch(final String bundleUrl, final int runLevel) {
 	    this.bundleUrl = bundleUrl;
 	    this.runLevel = runLevel;
 	}
@@ -378,6 +378,7 @@ public class IntegrationTest extends AbstractConfigurableBundleCreatorTests {
      * This method informs Spring DM framework that Felix should be used as the
      * OSGi platform for the tests.
      */
+    @Override
     protected String getPlatformName() {
 	return Platforms.FELIX;
     }
@@ -388,7 +389,7 @@ public class IntegrationTest extends AbstractConfigurableBundleCreatorTests {
      * intercepted and JunitTestActivator can be created and started.
      */
     @Override
-    protected void postProcessBundleContext(BundleContext context)
+    protected void postProcessBundleContext(final BundleContext context)
 	    throws Exception {
 	BundleContext fakeBC = (BundleContext) Proxy.newProxyInstance(
 		BundleContext.class.getClassLoader(),
@@ -434,9 +435,8 @@ public class IntegrationTest extends AbstractConfigurableBundleCreatorTests {
 		"./target/classes/META-INF/MANIFEST.MF"));
 	Attributes mainAttribs = bundleMf.getMainAttributes();
 
-	bundleSymbolicName = (String) mainAttribs
-		.getValue("Bundle-SymbolicName");
-	bundleVersion = (String) mainAttribs.getValue("Bundle-Version");
+	bundleSymbolicName = mainAttribs.getValue("Bundle-SymbolicName");
+	bundleVersion = mainAttribs.getValue("Bundle-Version");
 	bundleVersion = bundleVersion.replaceFirst("\\.SNAPSHOT", "-SNAPSHOT");
 
 	mainAttribs.put(new Attributes.Name("Import-Package"), mainAttribs
@@ -461,7 +461,7 @@ public class IntegrationTest extends AbstractConfigurableBundleCreatorTests {
      * @param url
      * @return
      */
-    private BundleToLaunch filterArtifactUrl(String url) {
+    private BundleToLaunch filterArtifactUrl(final String url) {
 	if (url.startsWith("wrap") || url.startsWith("mvn")) {
 	    String[] paxArgStrs = url.split("@");
 	    String bundleUrlStr = paxArgStrs[0];
@@ -505,7 +505,8 @@ public class IntegrationTest extends AbstractConfigurableBundleCreatorTests {
      * @return
      * @throws IOException
      */
-    private List<Resource> parsePaxArgs(NodeList paxArgs) throws IOException {
+    private List<Resource> parsePaxArgs(final NodeList paxArgs)
+	    throws IOException {
 	List<BundleToLaunch> bundleList = new ArrayList<BundleToLaunch>();
 	for (int i = 0; i < paxArgs.getLength(); i++) {
 	    Node paxArgNode = paxArgs.item(i);
@@ -522,7 +523,7 @@ public class IntegrationTest extends AbstractConfigurableBundleCreatorTests {
 	    }
 	}
 	Collections.sort(bundleList, new Comparator<BundleToLaunch>() {
-	    public int compare(BundleToLaunch o1, BundleToLaunch o2) {
+	    public int compare(final BundleToLaunch o1, final BundleToLaunch o2) {
 		if (o1.runLevel < o2.runLevel)
 		    return -1;
 		if (o1.runLevel > o2.runLevel)
@@ -546,7 +547,7 @@ public class IntegrationTest extends AbstractConfigurableBundleCreatorTests {
      * 
      * @param vmArgs
      */
-    private void parseRunArgs(String vmArgs) {
+    private void parseRunArgs(final String vmArgs) {
 	for (String vmArg : vmArgs.split(" ")) {
 	    vmArg = vmArg.trim();
 	    if (!vmArg.startsWith("-D")) {
@@ -633,13 +634,13 @@ public class IntegrationTest extends AbstractConfigurableBundleCreatorTests {
      */
     private List<Resource> processPaxArtifactUrls() throws Exception {
 	InvocationHandler dummyProxyHandler = new InvocationHandler() {
-	    public Object invoke(Object proxy, Method method, Object[] args)
-		    throws Throwable {
+	    public Object invoke(final Object proxy, final Method method,
+		    final Object[] args) throws Throwable {
 		return null;
 	    }
 	};
 	PropertyResolver dummyPropertyResolver = new PropertyResolver() {
-	    public String get(String arg0) {
+	    public String get(final String arg0) {
 		return null;
 	    }
 	};
@@ -681,7 +682,7 @@ public class IntegrationTest extends AbstractConfigurableBundleCreatorTests {
      * 
      * @return
      */
-    private Resource[] insertNeededDeps(List<Resource> bundles)
+    private Resource[] insertNeededDeps(final List<Resource> bundles)
 	    throws Exception {
 	bundles
 		.add(
@@ -708,6 +709,7 @@ public class IntegrationTest extends AbstractConfigurableBundleCreatorTests {
      * configuration is ignored and the "bundlesConfLocation" property is used
      * instead.
      */
+    @Override
     protected Resource[] getTestBundles() {
 	try {
 	    setDefaults();
@@ -751,12 +753,12 @@ public class IntegrationTest extends AbstractConfigurableBundleCreatorTests {
 	 */
 	private boolean initializedJunitTestActivator = false;
 
-	public FakeBundleContext(BundleContext bc) {
+	public FakeBundleContext(final BundleContext bc) {
 	    this.systemBC = bc;
 	}
 
-	public Object invoke(Object proxy, Method method, Object[] args)
-		throws Throwable {
+	public Object invoke(final Object proxy, final Method method,
+		final Object[] args) throws Throwable {
 	    Object ret = method.invoke(systemBC, args);
 	    String mName = method.getName();
 	    if ("installBundle".equals(mName)) {

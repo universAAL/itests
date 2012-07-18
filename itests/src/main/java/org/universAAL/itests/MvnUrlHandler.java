@@ -19,7 +19,7 @@ public class MvnUrlHandler extends Handler {
 
     private MavenSettings mavenSettings;
 
-    public MvnUrlHandler(boolean useOnlyLocalRepo) {
+    public MvnUrlHandler(final boolean useOnlyLocalRepo) {
 	this.useOnlyLocalRepo = useOnlyLocalRepo;
     }
 
@@ -58,9 +58,10 @@ public class MvnUrlHandler extends Handler {
 		if (!reposStr.contains("uaal")) {
 		    return "http://depot.universaal.org/maven-repo/releases/@id=uaal,http://depot.universaal.org/maven-repo/snapshots/@noreleases@id=uaal-snapshots@snapshots,http://depot.universaal.org/maven-repo/thirdparty/@id=uaal-thirdparty,http://depot.universaal.org/maven-repo/thirdparty/@id=iks-repository,http://osgi.sonatype.org/content/groups/pax-runner@id=paxrunner,http://repo1.maven.org/maven2@id=central,http://repository.ops4j.org/maven2@id=ops4j-releases,http://repository.springsource.com/maven/bundles/release@id=springsource-bundles-release,http://repository.springsource.com/maven/bundles/external@id=springsource-bundles-external";
 		}
-//		if (1==1){
-//		    return "http://depot.universaal.org/maven-repo/releases/@id=uaal,http://depot.universaal.org/maven-repo/snapshots/@noreleases@id=uaal-snapshots@snapshots,http://depot.universaal.org/maven-repo/thirdparty/@id=uaal-thirdparty,http://depot.universaal.org/maven-repo/thirdparty/@id=iks-repository,http://osgi.sonatype.org/content/groups/pax-runner@id=paxrunner,http://repo1.maven.org/maven2@id=central,http://repository.ops4j.org/maven2@id=ops4j-releases,http://repository.springsource.com/maven/bundles/release@id=springsource-bundles-release,http://repository.springsource.com/maven/bundles/external@id=springsource-bundles-external,http://repo.aduna-software.org/maven2/releases@id=aduna";
-//		}
+		// if (1==1){
+		// return
+		// "http://depot.universaal.org/maven-repo/releases/@id=uaal,http://depot.universaal.org/maven-repo/snapshots/@noreleases@id=uaal-snapshots@snapshots,http://depot.universaal.org/maven-repo/thirdparty/@id=uaal-thirdparty,http://depot.universaal.org/maven-repo/thirdparty/@id=iks-repository,http://osgi.sonatype.org/content/groups/pax-runner@id=paxrunner,http://repo1.maven.org/maven2@id=central,http://repository.ops4j.org/maven2@id=ops4j-releases,http://repository.springsource.com/maven/bundles/release@id=springsource-bundles-release,http://repository.springsource.com/maven/bundles/external@id=springsource-bundles-external,http://repo.aduna-software.org/maven2/releases@id=aduna";
+		// }
 		String[] repos = reposStr.split(",");
 		StringBuilder modifiedRepos = null;
 		for (String repo : repos) {
