@@ -690,7 +690,7 @@ public class IntegrationTest extends AbstractConfigurableBundleCreatorTests {
 			new UrlResource(
 				"mvn:org.apache.commons/com.springsource.org.apache.commons.io/1.4.0"));
 	bundles.add(0, new UrlResource(
-		"mvn:org.universAAL.support/itests/1.2.0"));
+		"mvn:org.universAAL.support/itests/1.3.0"));
 	bundles.add(0, new UrlResource(
 		"mvn:org.ops4j.pax.url/pax-url-wrap/1.3.5"));
 	bundles.add(0, new UrlResource(
