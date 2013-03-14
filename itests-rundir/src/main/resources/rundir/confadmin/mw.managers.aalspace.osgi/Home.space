@@ -8,7 +8,7 @@
   </space-descriptor>
   <peeringChannel>
     <channel-descriptor>
-      <aalChannel:channelName>mw.modules.aalspacemodule.osgi</aalChannel:channelName>
+      <aalChannel:channelName>mw.modules.aalspace.osgi</aalChannel:channelName>
       <aalChannel:channelURL>http://aaloa.isti.cnr.it/udp.xml</aalChannel:channelURL>
       <aalChannel:channelValue><![CDATA[
       
