@@ -30,7 +30,6 @@ import java.util.zip.ZipInputStream;
 import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.apache.commons.io.FileUtils;
-import org.ops4j.pax.exam.MavenUtils;
 import org.ops4j.pax.scanner.ScannedBundle;
 import org.ops4j.pax.scanner.bundle.internal.BundleScanner;
 import org.ops4j.pax.scanner.composite.internal.CompositeScanner;
@@ -701,8 +700,6 @@ public class IntegrationTest extends AbstractConfigurableBundleCreatorTests {
 		"mvn:org.ops4j.pax.url/pax-url-mvn/1.3.5"));
 	bundles.add(0, new UrlResource(
 		"mvn:org.ops4j.pax.url/pax-url-mvn/1.3.5"));
-	bundles.add(0, new UrlResource(
-		"mvn:org.ops4j.pax.exam/pax-exam/1.2.4"));	
 	return bundles.toArray(new Resource[bundles.size()]);
     }
 
