@@ -30,6 +30,7 @@ import java.util.zip.ZipInputStream;
 import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.apache.commons.io.FileUtils;
+import org.ops4j.pax.exam.MavenUtils;
 import org.ops4j.pax.scanner.ScannedBundle;
 import org.ops4j.pax.scanner.bundle.internal.BundleScanner;
 import org.ops4j.pax.scanner.composite.internal.CompositeScanner;
@@ -244,8 +245,12 @@ public class IntegrationTest extends AbstractConfigurableBundleCreatorTests {
 		}
 		addProtocolHandlers();
 		if (bundlesConfLocation == null) {
-		    URL runDirURL = new URL(
-			    IntegrationTestConsts.RUN_DIR_MVN_URL);
+		    String rundirVersion = MavenUtils.getArtifactVersion(
+			    IntegrationTestConsts.RUN_DIR_GROUP_ID, IntegrationTestConsts.RUN_DIR_ARTIFACT_ID);
+		    URL runDirURL = new URL(String.format("mvn:%s/%s/%s",
+			    IntegrationTestConsts.RUN_DIR_GROUP_ID,
+			    IntegrationTestConsts.RUN_DIR_ARTIFACT_ID,
+			    rundirVersion));
 		    unzipInpuStream(runDirURL.openStream(), DEFAULT_RUNDIR_TMP);
 		    bundlesConfLocation = DEFAULT_RUNDIR_TMP
 			    + "/rundir/confadmin";
@@ -438,9 +443,9 @@ public class IntegrationTest extends AbstractConfigurableBundleCreatorTests {
 	bundleVersion = mainAttribs.getValue("Bundle-Version");
 	bundleVersion = bundleVersion.replaceFirst("\\.SNAPSHOT", "-SNAPSHOT");
 
-	mainAttribs.put(new Attributes.Name("Import-Package"), mainAttribs
-		.getValue("Import-Package")
-		+ ",org.universAAL.itests,org.springframework.util");
+	mainAttribs.put(new Attributes.Name("Import-Package"),
+		mainAttribs.getValue("Import-Package")
+			+ ",org.universAAL.itests,org.springframework.util");
 	String dynamicImports = mainAttribs.getValue("DynamicImport-Package");
 	if (dynamicImports == null) {
 	    dynamicImports = "*";
@@ -470,11 +475,10 @@ public class IntegrationTest extends AbstractConfigurableBundleCreatorTests {
 		    if (!bundleUrlArr[2].equals(bundleVersion)) {
 			if (!ignoreVersionMismatch) {
 			    String msg = String
-				    .format(
-					    "Version mismatch! The integration test is enclosed in bundle %s-%s but bundle %s is supposed to be launched.\n"
-						    + "If there is a need for integration testing of bundle %s then the test should be placed in bundle's source.\n"
-						    + "You can accept version mismatch by invoking setter method before the test but be aware that in such a case\n"
-						    + "source code that You see in your IDE is not the one that You are actually testing !!!",
+				    .format("Version mismatch! The integration test is enclosed in bundle %s-%s but bundle %s is supposed to be launched.\n"
+					    + "If there is a need for integration testing of bundle %s then the test should be placed in bundle's source.\n"
+					    + "You can accept version mismatch by invoking setter method before the test but be aware that in such a case\n"
+					    + "source code that You see in your IDE is not the one that You are actually testing !!!",
 					    bundleSymbolicName, bundleVersion,
 					    url, url);
 			    throw new IllegalStateException(msg);
@@ -683,19 +687,22 @@ public class IntegrationTest extends AbstractConfigurableBundleCreatorTests {
      */
     private Resource[] insertNeededDeps(final List<Resource> bundles)
 	    throws Exception {
-	bundles
-		.add(
-			0,
-			new UrlResource(
-				"mvn:org.apache.commons/com.springsource.org.apache.commons.io/1.4.0"));
-	bundles.add(0, new UrlResource(
-		"mvn:org.universAAL.support/itests/1.3.1-SNAPSHOT"));
+	String itestsVersion = MavenUtils.getArtifactVersion(
+		"org.universAAL.support", "itests");
+	bundles.add(
+		0,
+		new UrlResource(
+			"mvn:org.apache.commons/com.springsource.org.apache.commons.io/1.4.0"));
+	bundles.add(0, new UrlResource("mvn:org.universAAL.support/itests/"
+		+ itestsVersion));
 	bundles.add(0, new UrlResource(
 		"mvn:org.ops4j.pax.url/pax-url-wrap/1.3.5"));
 	bundles.add(0, new UrlResource(
 		"mvn:org.ops4j.pax.url/pax-url-mvn/1.3.5"));
 	bundles.add(0, new UrlResource(
 		"mvn:org.ops4j.pax.url/pax-url-mvn/1.3.5"));
+	bundles.add(0, new UrlResource(
+		"mvn:org.ops4j.pax.exam/pax-exam/1.2.4"));	
 	return bundles.toArray(new Resource[bundles.size()]);
     }
 
