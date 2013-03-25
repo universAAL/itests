@@ -2,9 +2,9 @@
 <aalspace xmlns:aalChannel="http://universaal.org/aalspace-channel/v1.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="aalspace.xsd">
   <space-descriptor>
     <profile>HomeSpace</profile>
-    <spaceId>8224</spaceId>
-    <spaceName>myHome</spaceName>
-    <spaceDescription>Domestic Home</spaceDescription>
+    <spaceId>8888</spaceId>
+    <spaceName>myHome3</spaceName>
+    <spaceDescription>Super Domestic Home</spaceDescription>
   </space-descriptor>
   <peeringChannel>
     <channel-descriptor>
@@ -35,7 +35,7 @@
          max_bundle_timeout="30"
          ip_ttl="${jgroups.udp.ip_ttl:8}"
          enable_bundling="true"
-         enable_diagnostics="true"
+         enable_diagnostics="false"
          thread_naming_pattern="cl"
 
          timer_type="new"
@@ -119,7 +119,7 @@
          max_bundle_timeout="30"
          ip_ttl="${jgroups.udp.ip_ttl:8}"
          enable_bundling="true"
-         enable_diagnostics="true"
+         enable_diagnostics="false"
          thread_naming_pattern="cl"
 
          timer_type="new"
@@ -173,6 +173,7 @@
             
       ]]></aalChannel:channelValue>
     </channel-descriptor>
+        <!--Channel used by the context bus-->
     <channel-descriptor>
       <aalChannel:channelName>mw.bus.context.osgi</aalChannel:channelName>
       <aalChannel:channelURL>http://aaloa.isti.cnr.it/udp.xml</aalChannel:channelURL>
@@ -201,7 +202,7 @@
          max_bundle_timeout="30"
          ip_ttl="${jgroups.udp.ip_ttl:8}"
          enable_bundling="true"
-         enable_diagnostics="true"
+         enable_diagnostics="false"
          thread_naming_pattern="cl"
 
          timer_type="new"
@@ -256,6 +257,28 @@
       ]]>
       </aalChannel:channelValue>
     </channel-descriptor>
+    <!--Channel used by the model bus-->
+    <channel-descriptor>
+      <aalChannel:channelName>mw.bus.model.osgi</aalChannel:channelName>
+      <aalChannel:channelURL>http://aaloa.isti.cnr.it/udp.xml</aalChannel:channelURL>
+    </channel-descriptor>
+        <!--Channel used by the service aapi bus-->
+    <channel-descriptor>
+      <aalChannel:channelName>mw.bus.service.aapi.osgi</aalChannel:channelName>
+      <aalChannel:channelURL>http://aaloa.isti.cnr.it/udp.xml</aalChannel:channelURL>
+    </channel-descriptor>
+            <!--Channel used by the tracker bus-->
+    <channel-descriptor>
+      <aalChannel:channelName>mw.bus.tracker.osgi</aalChannel:channelName>
+      <aalChannel:channelURL>http://aaloa.isti.cnr.it/udp.xml</aalChannel:channelURL>
+    </channel-descriptor>
+    <!--Channel used by the tracker bus-->
+    <channel-descriptor>
+      <aalChannel:channelName>mw.bus.ui.osgi</aalChannel:channelName>
+      <aalChannel:channelURL>http://aaloa.isti.cnr.it/udp.xml</aalChannel:channelURL>
+    </channel-descriptor>
+
+        <!--Channel used by the service bus-->
         <channel-descriptor>
       <aalChannel:channelName>mw.bus.service.osgi</aalChannel:channelName>
       <aalChannel:channelURL>http://aaloa.isti.cnr.it/udp.xml</aalChannel:channelURL>
@@ -284,7 +307,7 @@
          max_bundle_timeout="30"
          ip_ttl="${jgroups.udp.ip_ttl:8}"
          enable_bundling="true"
-         enable_diagnostics="true"
+         enable_diagnostics="false"
          thread_naming_pattern="cl"
 
          timer_type="new"
