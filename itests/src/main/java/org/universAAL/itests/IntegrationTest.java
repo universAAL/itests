@@ -136,22 +136,30 @@ public class IntegrationTest extends AbstractConfigurableBundleCreatorTests {
      *            path to the launch configuration which will be used for
      *            setting up the OSGi platform in which TestCase will be
      *            executed.
-     * @param bundlesConfLocation
-     *            path to the uAAL runtime configuration directory.
      */
-    protected IntegrationTest(final String eclipseLaunchFile) {
+    protected IntegrationTest(final String eclipseLaunchConfiguration) {
 	this.eclipseLaunchFile = eclipseLaunchFile;
     }
 
     /**
-     * Method for overridding.
+     * Method for logging.
      * 
      * @param logMsg
+     *            Log message to be printed.
      */
     protected void log(final String logMsg) {
 	System.out.println(logMsg);
     }
 
+    /**
+     * Formatting log messages with a use of String.format.
+     * 
+     * @param format
+     *            Format in accordance with String.format API.
+     * @param args
+     *            Arguments to be printed in accordance with passed format.
+     * @return Final formatted string.
+     */
     protected String formatMsg(final String format, final Object... args) {
 	if (args != null) {
 	    return String.format(format, args);
@@ -160,6 +168,9 @@ public class IntegrationTest extends AbstractConfigurableBundleCreatorTests {
 	}
     }
 
+    /**
+     * Logs all bundles.
+     */
     protected void logAllBundles() {
 	log("\n\n\nThe following bundles are installed in the integration testing framework:");
 	int i = 1;
@@ -245,7 +256,8 @@ public class IntegrationTest extends AbstractConfigurableBundleCreatorTests {
 		addProtocolHandlers();
 		if (bundlesConfLocation == null) {
 		    String rundirVersion = MavenUtils.getArtifactVersion(
-			    IntegrationTestConsts.RUN_DIR_GROUP_ID, IntegrationTestConsts.RUN_DIR_ARTIFACT_ID);
+			    IntegrationTestConsts.RUN_DIR_GROUP_ID,
+			    IntegrationTestConsts.RUN_DIR_ARTIFACT_ID);
 		    URL runDirURL = new URL(String.format("mvn:%s/%s/%s",
 			    IntegrationTestConsts.RUN_DIR_GROUP_ID,
 			    IntegrationTestConsts.RUN_DIR_ARTIFACT_ID,
@@ -305,6 +317,13 @@ public class IntegrationTest extends AbstractConfigurableBundleCreatorTests {
 	runArgsAreSet = true;
     }
 
+    /**
+     * Sets urls of pax artifacts which should be launched for integration
+     * testing.
+     * 
+     * @param urls
+     *            List of pax artifacts urls.
+     */
     protected void setPaxArtifactUrls(final String... urls) {
 	List<String> paxUrls = new ArrayList<String>();
 	for (String url : urls) {
@@ -317,6 +336,12 @@ public class IntegrationTest extends AbstractConfigurableBundleCreatorTests {
 	this.paxArtifactsUrls = paxUrls.toArray(new String[paxUrls.size()]);
     }
 
+    /**
+     * Sets bundles.configuration.location system property.
+     * 
+     * @param path
+     *            Path to which bundles.configuration.location is to be set.
+     */
     protected void setBundleConfLocation(final String path) {
 	this.bundlesConfLocation = path;
     }
@@ -504,7 +529,7 @@ public class IntegrationTest extends AbstractConfigurableBundleCreatorTests {
      * @param paxArgs
      *            pax run arguments from the launch configurations provided as
      *            DOM NodeList
-     * @return
+     * @return Returns list of resources.
      * @throws IOException
      */
     private List<Resource> parsePaxArgs(final NodeList paxArgs)
@@ -548,6 +573,7 @@ public class IntegrationTest extends AbstractConfigurableBundleCreatorTests {
      * setter methods.
      * 
      * @param vmArgs
+     *            Arguments to JVM.
      */
     private void parseRunArgs(final String vmArgs) {
 	for (String vmArg : vmArgs.split(" ")) {
@@ -585,7 +611,7 @@ public class IntegrationTest extends AbstractConfigurableBundleCreatorTests {
      * This method processes configured eclipse launch configuration. Extracts
      * list of bundles and sets run arguments as system properties.
      * 
-     * @return
+     * @return Returns list of resources.
      */
     private List<Resource> processEclipseLaunhFile() {
 	List<Resource> bundleResources = null;
@@ -631,8 +657,10 @@ public class IntegrationTest extends AbstractConfigurableBundleCreatorTests {
      * This method processes configured urls of pax artifacts (composites and
      * bundles) and returns single list of bundles.
      * 
-     * @return
+     * @return Returns list of resources.
      * @throws Exception
+     *             This method can throw multiple exceptions so it was
+     *             aggregated to the most general one - the Exception.
      */
     private List<Resource> processPaxArtifactUrls() throws Exception {
 	InvocationHandler dummyProxyHandler = new InvocationHandler() {
@@ -682,7 +710,7 @@ public class IntegrationTest extends AbstractConfigurableBundleCreatorTests {
      * Adds additionall dependencies which are needed for launching uAAL
      * Integration Test.
      * 
-     * @return
+     * @return Returns array of resources.
      */
     private Resource[] insertNeededDeps(final List<Resource> bundles)
 	    throws Exception {
@@ -711,6 +739,8 @@ public class IntegrationTest extends AbstractConfigurableBundleCreatorTests {
      * "bundles.configuration.location" JVM argument provided in the launch
      * configuration is ignored and the "bundlesConfLocation" property is used
      * instead.
+     * 
+     * @return Returns array of resources.
      */
     @Override
     protected Resource[] getTestBundles() {

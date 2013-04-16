@@ -13,12 +13,32 @@ import org.ops4j.pax.url.mvn.ServiceConstants;
 import org.ops4j.pax.url.mvn.internal.Connection;
 import org.ops4j.util.property.PropertiesPropertyResolver;
 
+/**
+ * Class used for intercepting opening connection to maven url (such url is
+ * starting with "mvn:).
+ * 
+ * @author rotgier
+ * 
+ */
 public class MvnUrlHandler extends Handler {
 
+    /**
+     * Indication that only local repository should be used in resolving
+     * artifacts.
+     */
     private boolean useOnlyLocalRepo = false;
 
+    /**
+     * Maven settings file provided on given host.
+     */
     private MavenSettings mavenSettings;
 
+    /**
+     * Simply the constructor.
+     * 
+     * @param useOnlyLocalRepo
+     *            Parameter for setting useOnlyLocalRepo field.
+     */
     public MvnUrlHandler(final boolean useOnlyLocalRepo) {
 	this.useOnlyLocalRepo = useOnlyLocalRepo;
     }
@@ -34,6 +54,13 @@ public class MvnUrlHandler extends Handler {
 	return new Connection(url, config);
     }
 
+    /**
+     * Helper classes for intercepting referencing to MavenSettings and
+     * restricting repositories list when necessary.
+     * 
+     * @author rotgier
+     * 
+     */
     private class ControlledMavenSettings implements MavenSettings {
 
 	public String getLocalRepository() {
