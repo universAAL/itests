@@ -255,13 +255,7 @@ public class IntegrationTest extends AbstractConfigurableBundleCreatorTests {
 		}
 		addProtocolHandlers();
 		if (bundlesConfLocation == null) {
-		    String rundirVersion = MavenUtils.getArtifactVersion(
-			    IntegrationTestConsts.RUN_DIR_GROUP_ID,
-			    IntegrationTestConsts.RUN_DIR_ARTIFACT_ID);
-		    URL runDirURL = new URL(String.format("mvn:%s/%s/%s",
-			    IntegrationTestConsts.RUN_DIR_GROUP_ID,
-			    IntegrationTestConsts.RUN_DIR_ARTIFACT_ID,
-			    rundirVersion));
+		    URL runDirURL = new URL(IntegrationTestConsts.getRunDirMvnUrl());
 		    unzipInpuStream(runDirURL.openStream(), DEFAULT_RUNDIR_TMP);
 		    bundlesConfLocation = DEFAULT_RUNDIR_TMP
 			    + "/rundir/confadmin";

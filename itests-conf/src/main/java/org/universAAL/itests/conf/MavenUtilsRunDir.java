@@ -15,7 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.universAAL.itests;
+package org.universAAL.itests.conf;
 
 import java.io.IOException;
 import java.util.Properties;
@@ -26,12 +26,12 @@ import java.util.Properties;
  * @author Alin Dreghiciu (adreghiciu@gmail.com)
  * @since 0.3.1, March 09, 2009
  */
-public class MavenUtils {
+public class MavenUtilsRunDir {
 
     /**
      * Utility class. Ment to be used via the static factory methods.
      */
-    private MavenUtils() {
+    private MavenUtilsRunDir() {
 	// utility class
     }
 
@@ -53,7 +53,7 @@ public class MavenUtils {
 	    final String artifactId) {
 	final Properties dependencies = new Properties();
 	try {
-	    dependencies.load(MavenUtils.class.getClassLoader()
+	    dependencies.load(MavenUtilsRunDir.class.getClassLoader()
 		    .getResourceAsStream("dependencies.properties"));
 	    final String version = dependencies.getProperty(groupId + "/"
 		    + artifactId + "/version");
