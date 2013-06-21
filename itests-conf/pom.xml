@@ -5,11 +5,11 @@
   <parent>
     <groupId>org.universAAL.support</groupId>
     <artifactId>support.pom</artifactId>
-    <version>2.0.0</version>
+    <version>2.0.1-SNAPSHOT</version>
     <relativePath>../pom/pom.xml</relativePath>
   </parent>
   <artifactId>itests-conf</artifactId>
-  <version>2.0.0</version>
+  <version>2.0.1-SNAPSHOT</version>
   <packaging>bundle</packaging>
   <name>universAAL Support Integration Tests Configuration</name>
   <description>Constants for confguration of Integration Tests Framework</description>
