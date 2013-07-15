@@ -23,11 +23,11 @@ package org.universAAL.itests;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 import org.universAAL.middleware.container.ModuleContext;
-import org.universAAL.middleware.container.osgi.uAALBundleContainer;
+//import org.universAAL.middleware.container.osgi.uAALBundleContainer;
 
 public class Activator implements BundleActivator {
 
-    static ModuleContext mc;
+    //static ModuleContext mc;
 
     /*
      * (non-Javadoc)
@@ -37,8 +37,8 @@ public class Activator implements BundleActivator {
      * )
      */
     public void start(final BundleContext context) throws Exception {
-	mc = uAALBundleContainer.THE_CONTAINER
-		.registerModule(new Object[] { context });
+//	mc = uAALBundleContainer.THE_CONTAINER
+//		.registerModule(new Object[] { context });
     }
 
     /*
