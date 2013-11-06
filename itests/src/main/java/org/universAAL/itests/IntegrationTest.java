@@ -63,6 +63,7 @@ import org.springframework.osgi.test.AbstractConfigurableBundleCreatorTests;
 import org.springframework.osgi.test.platform.Platforms;
 import org.springframework.util.Assert;
 import org.universAAL.itests.conf.IntegrationTestConsts;
+import org.universAAL.itests.platform.FelixPlatform4_2;
 import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
@@ -422,7 +423,8 @@ public class IntegrationTest extends AbstractConfigurableBundleCreatorTests {
      */
     @Override
     protected String getPlatformName() {
-	return Platforms.FELIX;
+//	return Platforms.FELIX;
+	return FelixPlatform4_2.class.getName();
     }
 
     /**

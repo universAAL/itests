@@ -20,8 +20,8 @@ limitations under the License.
 */
 package org.universAAL.itests.conf;
 
-import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Properties;
 
 /**
  * Class containing constants related to integration testing and the process of
@@ -46,5 +46,16 @@ public class IntegrationTestConsts {
 	return String.format("mvn:%s/%s/%s",
 		IntegrationTestConsts.RUN_DIR_GROUP_ID,
 		IntegrationTestConsts.RUN_DIR_ARTIFACT_ID, rundirVersion);
+    }
+    
+    public static Properties getuAALMWProperties(){
+	try {
+	    URL prop = IntegrationTestConsts.class.getResource("/uAALmw.properties");
+	    Properties p = new Properties();
+	    p.load(prop.openStream());
+	    return p;
+	} catch (Exception e) {
+	    return new Properties();
+	}
     }
 }

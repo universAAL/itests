@@ -9,7 +9,7 @@
   </parent>
   <groupId>org.universAAL.support</groupId>
   <artifactId>itests.pom</artifactId>
-  <version>2.0.1-SNAPSHOT</version>
+  <version>2.0.2-SNAPSHOT</version>
   <packaging>pom</packaging>
   <name>universAAL OSGi Integration Tests</name>
   <description>The set of artifacts for building integration testing, where the full OSGi/uAAL stack is runned.</description>
@@ -17,8 +17,7 @@
     <module>itests</module>
     <module>itests-conf</module>
     <module>itests-rundir</module>
-  </modules> 
-
+  </modules>
   <dependencyManagement>
     <dependencies>
       <dependency>
@@ -63,5 +62,4 @@
       <url>http://depot.universaal.org/maven-repo/releases/</url>
     </repository>
   </repositories>
-
 </project>
