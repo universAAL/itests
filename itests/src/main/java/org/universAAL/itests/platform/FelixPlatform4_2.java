@@ -17,6 +17,8 @@
 
 package org.universAAL.itests.platform;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
@@ -36,10 +38,16 @@ import org.universAAL.itests.conf.IntegrationTestConsts;
  */
 public class FelixPlatform4_2 implements OsgiPlatform {
 
-    private static final String bundleDir = "./bundle";
-    private static final String cacheDir = "./cache";
+	private static final String TMP_DIR_FALLBACK = "./tmp-test";
+
+	private static final String DEFAULT_SUFFIX = "osgi";
+
+	private static final String TMP_PREFIX = "org.sfw.osgi";
+	
     private Framework m_fwk;
     private Properties configurationProperties;
+
+    private File felixStorageDir;
 
     /** {@ inheritDoc}	 */
     public void start() throws Exception {
@@ -111,6 +119,7 @@ public class FelixPlatform4_2 implements OsgiPlatform {
     }
     
     private Properties getPlatformProperties(){
+	
 	// (2) Load system properties.
         Main.loadSystemProperties();
 
@@ -119,9 +128,9 @@ public class FelixPlatform4_2 implements OsgiPlatform {
         //System.out.println("Felix config Properties is : " + System.getProperty("felix.config.properties"));
         
         Properties configProps = new Properties();
-        Map<String, String> config = Main.loadConfigProperties();
+        Map config = Main.loadConfigProperties();
         if (config != null) {
-	    for (String k : config.keySet()) {
+	    for (Object k : config.keySet()) {
 		if (k != null && config.get(k) != null){
 		    configProps.put(k, config.get(k));
 		    //System.out.println(k + " -> " + config.get(k));
@@ -131,11 +140,49 @@ public class FelixPlatform4_2 implements OsgiPlatform {
 	// (4) Copy framework properties from the system properties.
         Main.copySystemProperties(configProps);
             
-        // (5) Use the specified auto-deploy directory over default.
-        configProps.setProperty(AutoProcessor.AUTO_DEPLOY_DIR_PROPERY, bundleDir);
+        createStorageDir(configProps);
 
-        // (6) Use the specified bundle cache directory over default.
-        configProps.setProperty(Constants.FRAMEWORK_STORAGE, cacheDir);
+        configProps.setProperty(Constants.FRAMEWORK_COMMAND_ABSPATH, "target/rundir/");
+        
         return configProps;
     }
+
+	File createTempDir(String suffix) {
+		if (suffix == null)
+			suffix = DEFAULT_SUFFIX;
+		File tempFileName;
+
+		try {
+			tempFileName = File.createTempFile(TMP_PREFIX, suffix);
+		}
+		catch (IOException ex) {
+			return new File(TMP_DIR_FALLBACK);
+		}
+
+		tempFileName.delete(); // we want it to be a directory...
+		File tempFolder = new File(tempFileName.getAbsolutePath());
+		tempFolder.mkdirs();
+		return tempFolder;
+	}
+	
+	/**
+	 * Configuration settings for the OSGi test run.
+	 * 
+	 * @return
+	 */
+	private void createStorageDir(Properties configProperties) {
+		// create a temporary file if none is set
+		if (felixStorageDir == null) {
+			felixStorageDir = createTempDir("felix");
+			felixStorageDir.deleteOnExit();
+		}
+
+		// (5) Use the specified auto-deploy directory over default.
+		configProperties.setProperty(AutoProcessor.AUTO_DEPLOY_DIR_PROPERY, felixStorageDir.getAbsolutePath());
+
+	        // (6) Use the specified bundle cache directory over default.
+		configProperties.setProperty(Constants.FRAMEWORK_STORAGE, felixStorageDir.getAbsolutePath());
+		
+		configProperties.setProperty(Constants.FRAMEWORK_COMMAND_ABSPATH, felixStorageDir.getAbsolutePath());
+	}
 }

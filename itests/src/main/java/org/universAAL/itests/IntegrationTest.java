@@ -159,7 +159,7 @@ public class IntegrationTest extends AbstractConfigurableBundleCreatorTests {
      *            executed.
      */
     protected IntegrationTest(final String eclipseLaunchConfiguration) {
-	this.eclipseLaunchFile = eclipseLaunchFile;
+	this.eclipseLaunchFile = eclipseLaunchConfiguration;
     }
 
     /**

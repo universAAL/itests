@@ -36,6 +36,7 @@
       <groupId>org.apache.felix</groupId>
       <artifactId>org.apache.felix.main</artifactId>
       <version>4.2.1</version>
+<!-- 	  <version>3.0.9</version> -->
     </dependency>
     <dependency>
       <groupId>org.springframework.osgi</groupId>
@@ -46,51 +47,6 @@
       <groupId>org.objectweb.asm</groupId>
       <artifactId>com.springsource.org.objectweb.asm</artifactId>
       <version>2.2.3</version>
-    </dependency>
-    <dependency>
-      <groupId>org.slf4j</groupId>
-      <artifactId>com.springsource.slf4j.api</artifactId>
-      <version>${org.slf4j.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.slf4j</groupId>
-      <artifactId>com.springsource.slf4j.log4j</artifactId>
-      <version>${org.slf4j.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.slf4j</groupId>
-      <artifactId>com.springsource.slf4j.jcl</artifactId>
-      <version>${org.slf4j.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.slf4j</groupId>
-      <artifactId>com.springsource.slf4j.org.apache.commons.logging</artifactId>
-      <version>${org.slf4j.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework.osgi</groupId>
-      <artifactId>log4j.osgi</artifactId>
-      <version>1.2.15-SNAPSHOT</version>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework.osgi</groupId>
-      <artifactId>spring-osgi-annotation</artifactId>
-      <version>${org.springframework.osgi.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework.osgi</groupId>
-      <artifactId>spring-osgi-core</artifactId>
-      <version>${org.springframework.osgi.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework.osgi</groupId>
-      <artifactId>spring-osgi-extender</artifactId>
-      <version>${org.springframework.osgi.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework.osgi</groupId>
-      <artifactId>spring-osgi-test</artifactId>
-      <version>${org.springframework.osgi.version}</version>
     </dependency>
     <dependency>
       <groupId>org.apache.commons</groupId>
@@ -189,9 +145,14 @@
             <Bundle-Description>${project.description}</Bundle-Description>
             <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
             <Private-Package>org.universAAL.itests.platform,
-            org.apache.felix.*</Private-Package>
+           					 org.apache.felix.*</Private-Package>
             <Export-Package>org.universAAL.itests</Export-Package>
-            <Import-Package>!aQute.service.scripting, *</Import-Package>
+            <Import-Package>!aQute.service.scripting,
+            				!android.*,
+            				!dalvik.*,
+            				*</Import-Package>
+<!--            	<Embed-Dependency>*;scope=compile|runtime</Embed-Dependency> -->
+<!--             <Embed-Transitive>true</Embed-Transitive> -->
             <Embed-Dependency>pax-url-maven-commons, pax-url-mvn,
 							pax-url-wrap, pax-scanner-service, pax-scanner-composite,
 							pax-scanner-bundle, itests-conf</Embed-Dependency>
