@@ -150,7 +150,7 @@
             <Import-Package>!aQute.service.scripting,
             				!android.*,
             				!dalvik.*,
-            				*</Import-Package>
+            				org.osgi.framework;version="[1,2)",*</Import-Package>
 <!--            	<Embed-Dependency>*;scope=compile|runtime</Embed-Dependency> -->
 <!--             <Embed-Transitive>true</Embed-Transitive> -->
             <Embed-Dependency>pax-url-maven-commons, pax-url-mvn,
