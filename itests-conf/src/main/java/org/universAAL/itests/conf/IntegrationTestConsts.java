@@ -21,6 +21,7 @@ limitations under the License.
 package org.universAAL.itests.conf;
 
 import java.net.URL;
+import java.util.Map.Entry;
 import java.util.Properties;
 
 /**
@@ -53,6 +54,9 @@ public class IntegrationTestConsts {
 	    URL prop = IntegrationTestConsts.class.getResource("/uAALmw.properties");
 	    Properties p = new Properties();
 	    p.load(prop.openStream());
+	    for (Entry<Object, Object> ent : p.entrySet()) {
+		
+	    }
 	    return p;
 	} catch (Exception e) {
 	    return new Properties();

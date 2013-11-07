@@ -36,8 +36,8 @@ import org.universAAL.itests.conf.IntegrationTestConsts;
  */
 public class FelixPlatform4_2 implements OsgiPlatform {
 
-    private static final String bundleDir = "target/Felix/bundle";
-    private static final String cacheDir = "target/Felix/cache";
+    private static final String bundleDir = "./bundle";
+    private static final String cacheDir = "./cache";
     private Framework m_fwk;
     private Properties configurationProperties;
 
@@ -51,6 +51,7 @@ public class FelixPlatform4_2 implements OsgiPlatform {
             HashMap<String, String> cfg = new HashMap<String, String>();
             for (Object k : configurationProperties.keySet()) {
 		cfg.put(k.toString(), configurationProperties.get(k).toString());
+		//System.out.println(k + " -> " + configurationProperties.get(k));
 	    }
             m_fwk = factory.newFramework(cfg);
             m_fwk.init();
