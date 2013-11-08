@@ -2,9 +2,9 @@
 <aalspace xmlns:aalChannel="http://universaal.org/aalspace-channel/v1.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="aalspace.xsd">
   <space-descriptor>
     <profile>HomeSpace</profile>
-    <spaceId>8888</spaceId>
-    <spaceName>myHome3</spaceName>
-    <spaceDescription>Super Domestic Home</spaceDescription>
+    <spaceId>4321</spaceId>
+    <spaceName>itestsSpace</spaceName>
+    <spaceDescription>itests environment</spaceDescription>
   </space-descriptor>
   <peeringChannel>
     <channel-descriptor>
