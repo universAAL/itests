@@ -22,7 +22,6 @@ package org.universAAL.itests;
 
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
-import org.universAAL.middleware.container.ModuleContext;
 //import org.universAAL.middleware.container.osgi.uAALBundleContainer;
 
 public class Activator implements BundleActivator {

@@ -16,11 +16,6 @@
   <url></url>
   <dependencies>
     <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
       <groupId>org.universAAL.support</groupId>
       <artifactId>itests-rundir</artifactId>
     </dependency>
