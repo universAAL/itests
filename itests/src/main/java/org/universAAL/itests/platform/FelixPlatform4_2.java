@@ -49,7 +49,7 @@ public class FelixPlatform4_2 implements OsgiPlatform {
 
     private File felixStorageDir;
 
-    /** {@ inheritDoc}	 */
+    /** {@inheritDoc}	 */
     public void start() throws Exception {
 	try
         {
@@ -80,7 +80,7 @@ public class FelixPlatform4_2 implements OsgiPlatform {
 
     }
 
-    /** {@ inheritDoc}	 */
+    /** {@inheritDoc}	 */
     public void stop() throws Exception {
 	if (m_fwk != null)
 	    m_fwk.stop();
@@ -111,7 +111,7 @@ public class FelixPlatform4_2 implements OsgiPlatform {
 	}
 	
 
-    /** {@ inheritDoc}	 */
+    /** {@inheritDoc}	 */
     public BundleContext getBundleContext() {
 	if (m_fwk != null)
 	    return m_fwk.getBundleContext();
