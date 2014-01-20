@@ -5,11 +5,11 @@
   <parent>
     <groupId>org.universAAL.support</groupId>
     <artifactId>itests.pom</artifactId>
-    <version>3.0.0</version>
+    <version>3.0.1-SNAPSHOT</version>
     <relativePath>../</relativePath>
   </parent>
   <artifactId>itests</artifactId>
-  <version>3.0.0</version>
+  <version>3.0.1-SNAPSHOT</version>
   <packaging>bundle</packaging>
   <name>universAAL Support Integration Tests Framework</name>
   <description>Framework used for automation of integration tests for universAAL platform</description>
