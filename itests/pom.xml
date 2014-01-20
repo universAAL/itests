@@ -5,11 +5,11 @@
   <parent>
     <groupId>org.universAAL.support</groupId>
     <artifactId>itests.pom</artifactId>
-    <version>2.0.2-SNAPSHOT</version>
+    <version>3.0.0</version>
     <relativePath>../</relativePath>
   </parent>
   <artifactId>itests</artifactId>
-  <version>2.0.2-SNAPSHOT</version>
+  <version>3.0.0</version>
   <packaging>bundle</packaging>
   <name>universAAL Support Integration Tests Framework</name>
   <description>Framework used for automation of integration tests for universAAL platform</description>
@@ -32,7 +32,6 @@
       <groupId>org.apache.felix</groupId>
       <artifactId>org.apache.felix.main</artifactId>
       <version>4.2.1</version>
-<!-- 	  <version>3.0.9</version> -->
     </dependency>
     <dependency>
       <groupId>org.springframework.osgi</groupId>
@@ -147,8 +146,6 @@
             				!android.*,
             				!dalvik.*,
             				org.osgi.framework;version="[1,2)",*</Import-Package>
-<!--            	<Embed-Dependency>*;scope=compile|runtime</Embed-Dependency> -->
-<!--             <Embed-Transitive>true</Embed-Transitive> -->
             <Embed-Dependency>pax-url-maven-commons, pax-url-mvn,
 							pax-url-wrap, pax-scanner-service, pax-scanner-composite,
 							pax-scanner-bundle, itests-conf</Embed-Dependency>

@@ -5,11 +5,11 @@
   <parent>
     <groupId>org.universAAL.support</groupId>
     <artifactId>itests.pom</artifactId>
-    <version>2.0.2-SNAPSHOT</version>
+    <version>3.0.0</version>
     <relativePath>../</relativePath>
   </parent>
   <artifactId>itests-rundir</artifactId>
-  <version>2.0.2-SNAPSHOT</version>
+  <version>3.0.0</version>
   <name>universAAL Support Integration Tests Rundir</name>
   <description>Runtime directory of framework used for automation of integration tests in universAAL platform</description>
 </project>
