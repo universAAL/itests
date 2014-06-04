@@ -9,7 +9,7 @@
     <relativePath>../</relativePath>
   </parent>
   <artifactId>itests-conf</artifactId>
-  <version>3.0.1-SNAPSHOT</version>
+  <version>3.1.0</version>
   <packaging>bundle</packaging>
   <name>universAAL Support Integration Tests Configuration</name>
   <description>Constants for confguration of Integration Tests Framework</description>

@@ -9,7 +9,7 @@
   </parent>
   <groupId>org.universAAL.support</groupId>
   <artifactId>itests.pom</artifactId>
-  <version>3.0.1-SNAPSHOT</version>
+  <version>3.1.0</version>
   <packaging>pom</packaging>
   <name>universAAL OSGi Integration Tests</name>
   <description>The set of artifacts for building integration testing, where the full OSGi/uAAL stack is runned.</description>
