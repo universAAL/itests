@@ -18,14 +18,6 @@
     <module>itests-conf</module>
     <module>itests-rundir</module>
   </modules>
-  <scm>
-    <connection>${svn.base}/itests-suite</connection>
-    <developerConnection>${svn.base}/itests-suite</developerConnection>
-    <url>${svn.base.url}itests-suite</url>
-  </scm>
-  <properties>
-    <gforge.project.name>support</gforge.project.name>
-  </properties>
   <dependencyManagement>
     <dependencies>
       <dependency>
