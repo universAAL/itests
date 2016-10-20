@@ -60,7 +60,6 @@ import org.osgi.framework.BundleContext;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.osgi.test.AbstractConfigurableBundleCreatorTests;
-import org.springframework.osgi.test.platform.Platforms;
 import org.springframework.util.Assert;
 import org.universAAL.itests.conf.IntegrationTestConsts;
 import org.universAAL.itests.platform.FelixPlatform4_2;
@@ -103,6 +102,7 @@ public class IntegrationTest extends AbstractConfigurableBundleCreatorTests {
 
     private boolean ignoreVersionMismatch = false;
 
+	private boolean ignoreLastBundle = false;
     /**
      * Symbolic name of bundle in which integration tests will be performed. The
      * name is extracted from manifest.
@@ -369,6 +369,17 @@ public class IntegrationTest extends AbstractConfigurableBundleCreatorTests {
      */
     protected void setUseOnlyLocalRepo(final boolean useOnlyLocalRepo) {
 	this.useOnlyLocalRepo = useOnlyLocalRepo;
+    }
+    
+    /**
+     * Sets a flag that ignores the last bundle in artefact.composite for run this test.
+     * This enables running all the environment except the bundle tested, or in certain cases
+     * fix some issues with double installing.
+     * 
+     * @param ignoreLast
+     */
+    protected void setIgnoreLastBudnle(final boolean ignoreLast){
+    	ignoreLastBundle = ignoreLast;
     }
 
     /**
@@ -744,6 +755,11 @@ public class IntegrationTest extends AbstractConfigurableBundleCreatorTests {
 		"mvn:org.ops4j.pax.url/pax-url-mvn/1.3.5"));
 	bundles.add(0, new UrlResource(
 		"mvn:org.ops4j.pax.url/pax-url-mvn/1.3.5"));
+	if (ignoreLastBundle) {
+		Resource last = bundles.get(bundles.size()-1);
+		log("Ignoring Last Bundle: " + last.getDescription());
+		bundles.remove(bundles.size() - 1);
+	}
 	return bundles.toArray(new Resource[bundles.size()]);
     }
 
