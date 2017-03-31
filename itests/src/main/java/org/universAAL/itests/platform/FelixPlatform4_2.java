@@ -51,26 +51,28 @@ public class FelixPlatform4_2 implements OsgiPlatform {
 
     /** {@inheritDoc}	 */
     public void start() throws Exception {
-	try
-        {
-            // (8) Create an instance and initialize the framework.
-//            FrameworkFactory factory = getFrameworkFactory();
-	    FrameworkFactory factory = new org.apache.felix.framework.FrameworkFactory();
-            HashMap<String, String> cfg = new HashMap<String, String>();
-            for (Object k : configurationProperties.keySet()) {
-		cfg.put(k.toString(), configurationProperties.get(k).toString());
-		//System.out.println(k + " -> " + configurationProperties.get(k));
-	    }
-            m_fwk = factory.newFramework(cfg);
-            m_fwk.init();
-            // (9) Use the system bundle context to process the auto-deploy
-            // and auto-install/auto-start properties.
-            AutoProcessor.process(configurationProperties, m_fwk.getBundleContext());
-            // (10) Start the framework.
-            m_fwk.start();
-            // (11) Wait for framework to stop to exit the VM.
-            //m_fwk.waitForStop(0);
-        }
+    	try
+    	{
+    		// initialize properties and set them as system wide so Felix can pick them up
+    		System.getProperties().putAll(getConfigurationProperties());
+    		// (8) Create an instance and initialize the framework.
+    		// FrameworkFactory factory = getFrameworkFactory();
+    		FrameworkFactory factory = new org.apache.felix.framework.FrameworkFactory();
+    		HashMap<String, String> cfg = new HashMap<String, String>();
+    		for (Object k : configurationProperties.keySet()) {
+    			cfg.put(k.toString(), configurationProperties.get(k).toString());
+    			//System.out.println(k + " -> " + configurationProperties.get(k));
+    		}
+    		m_fwk = factory.newFramework(cfg);
+    		m_fwk.init();
+    		// (9) Use the system bundle context to process the auto-deploy
+    		// and auto-install/auto-start properties.
+    		AutoProcessor.process(configurationProperties, m_fwk.getBundleContext());
+    		// (10) Start the framework.
+    		m_fwk.start();
+    		// (11) Wait for framework to stop to exit the VM.
+    		//m_fwk.waitForStop(0);
+    	}
         catch (Exception ex)
         {
             System.err.println("Could not create framework: " + ex);
