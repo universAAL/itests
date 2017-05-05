@@ -110,6 +110,12 @@
     </dependency>
     <dependency>
       <groupId>org.slf4j</groupId>
+      <artifactId>com.springsource.slf4j.api</artifactId>
+      <version>1.5.0</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
       <artifactId>com.springsource.slf4j.log4j</artifactId>
       <version>${org.slf4j.version}</version>
     </dependency>
