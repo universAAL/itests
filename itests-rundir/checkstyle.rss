@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+<rss version="0.91">
+  <channel>
+    <title>universAAL Support Integration Tests Rundir - Checkstyle report</title>
+    <link>http://xtras/itests/itests-rundir/</link>
+    <description>universAAL Support Integration Tests Rundir - Checkstyle report</description>
+    <language>en-us</language>
+    <copyright>&#169;2017 universAAL Consortium</copyright>
+    <item>
+      <title>File: 13,
+             Errors: 0,
+             Warnings: 0,
+             Infos: 230
+      </title>
+            <link>http://xtras/itests/itests-rundir//checkstyle.html</link>
+      <description>
+        <p>Click <a href="http://xtras/itests/itests-rundir//checkstyle.html">here</a> for the full Checkstyle report.</p>
+
+        <table summary="Files" boder="1">
+          <thead>
+            <tr>
+              <th>Files</th>
+              <th style="width:30px;"><abbr title="Info">I</abbr></th>
+              <th style="width:30px;"><abbr title="Warning">W</abbr></th>
+              <th style="width:30px;"><abbr title="Error">E</abbr></th>
+            </tr>
+          </thead>
+          <tbody>
+                          <tr>
+                <td>
+                  <a href="http://xtras/itests/itests-rundir//checkstyle.html#rundir.confadmin.services.org.universAAL.mw.data.representation.properties">rundir/confadmin/services/org.universAAL.mw.data.representation.properties</a>
+                </td>
+                <td>
+                  9
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://xtras/itests/itests-rundir//checkstyle.html#rundir.confadmin.services.mw.modules.aalspace.core.properties">rundir/confadmin/services/mw.modules.aalspace.core.properties</a>
+                </td>
+                <td>
+                  23
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://xtras/itests/itests-rundir//checkstyle.html#rundir.confadmin.mw.modules.aalspace.core.properties">rundir/confadmin/mw.modules.aalspace.core.properties</a>
+                </td>
+                <td>
+                  22
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://xtras/itests/itests-rundir//checkstyle.html#rundir.confadmin.services.mw.managers.aalspace.core.properties">rundir/confadmin/services/mw.managers.aalspace.core.properties</a>
+                </td>
+                <td>
+                  18
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://xtras/itests/itests-rundir//checkstyle.html#rundir.confadmin.services.org.ops4j.pax.logging.properties">rundir/confadmin/services/org.ops4j.pax.logging.properties</a>
+                </td>
+                <td>
+                  2
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://xtras/itests/itests-rundir//checkstyle.html#rundir.confadmin.mw.managers.aalspace.core.properties">rundir/confadmin/mw.managers.aalspace.core.properties</a>
+                </td>
+                <td>
+                  18
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://xtras/itests/itests-rundir//checkstyle.html#rundir.confadmin.ctxt.che.CHe.properties">rundir/confadmin/ctxt.che/CHe.properties</a>
+                </td>
+                <td>
+                  1
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://xtras/itests/itests-rundir//checkstyle.html#rundir.confadmin.mw.connectors.discovery.slp.core.properties">rundir/confadmin/mw.connectors.discovery.slp.core.properties</a>
+                </td>
+                <td>
+                  19
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://xtras/itests/itests-rundir//checkstyle.html#rundir.confadmin.services.mw.connectors.communication.jgroups.core.properties">rundir/confadmin/services/mw.connectors.communication.jgroups.core.properties</a>
+                </td>
+                <td>
+                  27
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://xtras/itests/itests-rundir//checkstyle.html#rundir.confadmin.services.mw.connectors.discovery.slp.core.properties">rundir/confadmin/services/mw.connectors.discovery.slp.core.properties</a>
+                </td>
+                <td>
+                  19
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://xtras/itests/itests-rundir//checkstyle.html#rundir.confadmin.services.mw.managers.deploy.core.properties">rundir/confadmin/services/mw.managers.deploy.core.properties</a>
+                </td>
+                <td>
+                  25
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://xtras/itests/itests-rundir//checkstyle.html#rundir.confadmin.mw.connectors.communication.jgroups.core.properties">rundir/confadmin/mw.connectors.communication.jgroups.core.properties</a>
+                </td>
+                <td>
+                  23
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="http://xtras/itests/itests-rundir//checkstyle.html#rundir.confadmin.mw.managers.deploy.core.properties">rundir/confadmin/mw.managers.deploy.core.properties</a>
+                </td>
+                <td>
+                  24
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                      </tbody>
+        </table>
+        
+      </description>
+    </item>
+  </channel>
+</rss>
+

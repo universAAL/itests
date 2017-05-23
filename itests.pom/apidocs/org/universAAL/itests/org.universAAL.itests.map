@@ -1,0 +1,12 @@
+<map id="G" name="G">
+<area shape="rect" id="c10" href="./MavenUtils.html" title="org.universAAL.itests.MavenUtils" alt="" coords="15,17,102,42"/>
+<area shape="rect" id="node1" href="./MavenUtils.html" title="&lt;TABLE&gt;" alt="" coords="5,5,112,53"/>
+<area shape="rect" id="c11" href="./IntegrationTest.html" title="org.universAAL.itests.IntegrationTest" alt="" coords="146,17,254,42"/>
+<area shape="rect" id="node2" href="./IntegrationTest.html" title="&lt;TABLE&gt;" alt="" coords="136,5,264,53"/>
+<area shape="rect" id="c12" href="./IntegrationTest.FakeBundleContext.html" title="org.universAAL.itests.IntegrationTest.FakeBundleContext" alt="" coords="299,17,435,42"/>
+<area shape="rect" id="node3" href="./IntegrationTest.FakeBundleContext.html" title="&lt;TABLE&gt;" alt="" coords="288,5,445,53"/>
+<area shape="rect" id="c13" href="./Activator.html" title="org.universAAL.itests.Activator" alt="" coords="479,17,553,42"/>
+<area shape="rect" id="node4" href="./Activator.html" title="&lt;TABLE&gt;" alt="" coords="469,5,563,53"/>
+<area shape="rect" id="c14" href="./MvnUrlHandler.html" title="org.universAAL.itests.MvnUrlHandler" alt="" coords="597,17,705,42"/>
+<area shape="rect" id="node5" href="./MvnUrlHandler.html" title="&lt;TABLE&gt;" alt="" coords="587,5,715,53"/>
+</map>
