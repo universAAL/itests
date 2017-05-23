@@ -14,9 +14,9 @@
   <name>universAAL OSGi Integration Tests</name>
   <description>The set of artifacts for building integration testing, where the full OSGi/uAAL stack is runned.</description>
   <modules>
-    <module>itests</module>
-    <module>itests-conf</module>
-    <module>itests-rundir</module>
+    <module>../itests</module>
+    <module>../itests-conf</module>
+    <module>../itests-rundir</module>
   </modules>
   <dependencyManagement>
     <dependencies>

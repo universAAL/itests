@@ -6,7 +6,7 @@
     <groupId>org.universAAL.support</groupId>
     <artifactId>itests.pom</artifactId>
     <version>3.4.1-SNAPSHOT</version>
-    <relativePath>../</relativePath>
+    <relativePath>../itests.pom</relativePath>
   </parent>
   <artifactId>itests-rundir</artifactId>
   <version>3.4.1-SNAPSHOT</version>
