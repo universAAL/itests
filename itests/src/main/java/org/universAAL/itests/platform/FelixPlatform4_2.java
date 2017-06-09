@@ -43,51 +43,51 @@ public class FelixPlatform4_2 implements OsgiPlatform {
 	private static final String DEFAULT_SUFFIX = "osgi";
 
 	private static final String TMP_PREFIX = "org.sfw.osgi";
-	
-    private Framework m_fwk;
-    private Properties configurationProperties;
 
-    private File felixStorageDir;
+	private Framework m_fwk;
+	private Properties configurationProperties;
 
-    /** {@inheritDoc}	 */
-    public void start() throws Exception {
-    	try
-    	{
-    		// initialize properties and set them as system wide so Felix can pick them up
-    		System.getProperties().putAll(getConfigurationProperties());
-    		// (8) Create an instance and initialize the framework.
-    		// FrameworkFactory factory = getFrameworkFactory();
-    		FrameworkFactory factory = new org.apache.felix.framework.FrameworkFactory();
-    		HashMap<String, String> cfg = new HashMap<String, String>();
-    		for (Object k : configurationProperties.keySet()) {
-    			cfg.put(k.toString(), configurationProperties.get(k).toString());
-    			//System.out.println(k + " -> " + configurationProperties.get(k));
-    		}
-    		m_fwk = factory.newFramework(cfg);
-    		m_fwk.init();
-    		// (9) Use the system bundle context to process the auto-deploy
-    		// and auto-install/auto-start properties.
-    		AutoProcessor.process(configurationProperties, m_fwk.getBundleContext());
-    		// (10) Start the framework.
-    		m_fwk.start();
-    		// (11) Wait for framework to stop to exit the VM.
-    		//m_fwk.waitForStop(0);
-    	}
-        catch (Exception ex)
-        {
-            System.err.println("Could not create framework: " + ex);
-            ex.printStackTrace();
-            System.exit(0);
-        }
+	private File felixStorageDir;
 
-    }
+	/** {@inheritDoc} */
+	public void start() throws Exception {
+		try {
+			// initialize properties and set them as system wide so Felix can
+			// pick them up
+			System.getProperties().putAll(getConfigurationProperties());
+			// (8) Create an instance and initialize the framework.
+			// FrameworkFactory factory = getFrameworkFactory();
+			FrameworkFactory factory = new org.apache.felix.framework.FrameworkFactory();
+			HashMap<String, String> cfg = new HashMap<String, String>();
+			for (Object k : configurationProperties.keySet()) {
+				cfg.put(k.toString(), configurationProperties.get(k).toString());
+				// System.out.println(k + " -> " +
+				// configurationProperties.get(k));
+			}
+			m_fwk = factory.newFramework(cfg);
+			m_fwk.init();
+			// (9) Use the system bundle context to process the auto-deploy
+			// and auto-install/auto-start properties.
+			AutoProcessor.process(configurationProperties, m_fwk.getBundleContext());
+			// (10) Start the framework.
+			m_fwk.start();
+			// (11) Wait for framework to stop to exit the VM.
+			// m_fwk.waitForStop(0);
+		} catch (Exception ex) {
+			System.err.println("Could not create framework: " + ex);
+			ex.printStackTrace();
+			System.exit(0);
+		}
 
-    /** {@inheritDoc}	 */
-    public void stop() throws Exception {
-	if (m_fwk != null)
-	    m_fwk.stop();
+	}
 
-    }
+	/** {@inheritDoc} */
+	public void stop() throws Exception {
+		if (m_fwk != null)
+			m_fwk.stop();
+
+	}
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -111,43 +111,44 @@ public class FelixPlatform4_2 implements OsgiPlatform {
 		}
 		return configurationProperties;
 	}
-	
 
-    /** {@inheritDoc}	 */
-    public BundleContext getBundleContext() {
-	if (m_fwk != null)
-	    return m_fwk.getBundleContext();
-	return null;
-    }
-    
-    private Properties getPlatformProperties(){
-	
-	// (2) Load system properties.
-        Main.loadSystemProperties();
-
-        System.setProperty("felix.config.properties", Main.class.getClassLoader().getResource("default.properties").toString());
-        
-        //System.out.println("Felix config Properties is : " + System.getProperty("felix.config.properties"));
-        
-        Properties configProps = new Properties();
-        Map config = Main.loadConfigProperties();
-        if (config != null) {
-	    for (Object k : config.keySet()) {
-		if (k != null && config.get(k) != null){
-		    configProps.put(k, config.get(k));
-		    //System.out.println(k + " -> " + config.get(k));
-		}
-	    }
+	/** {@inheritDoc} */
+	public BundleContext getBundleContext() {
+		if (m_fwk != null)
+			return m_fwk.getBundleContext();
+		return null;
 	}
-	// (4) Copy framework properties from the system properties.
-        Main.copySystemProperties(configProps);
-            
-        createStorageDir(configProps);
 
-        configProps.setProperty(Constants.FRAMEWORK_COMMAND_ABSPATH, "target/rundir/");
-        
-        return configProps;
-    }
+	private Properties getPlatformProperties() {
+
+		// (2) Load system properties.
+		Main.loadSystemProperties();
+
+		System.setProperty("felix.config.properties",
+				Main.class.getClassLoader().getResource("default.properties").toString());
+
+		// System.out.println("Felix config Properties is : " +
+		// System.getProperty("felix.config.properties"));
+
+		Properties configProps = new Properties();
+		Map config = Main.loadConfigProperties();
+		if (config != null) {
+			for (Object k : config.keySet()) {
+				if (k != null && config.get(k) != null) {
+					configProps.put(k, config.get(k));
+					// System.out.println(k + " -> " + config.get(k));
+				}
+			}
+		}
+		// (4) Copy framework properties from the system properties.
+		Main.copySystemProperties(configProps);
+
+		createStorageDir(configProps);
+
+		configProps.setProperty(Constants.FRAMEWORK_COMMAND_ABSPATH, "target/rundir/");
+
+		return configProps;
+	}
 
 	File createTempDir(String suffix) {
 		if (suffix == null)
@@ -156,8 +157,7 @@ public class FelixPlatform4_2 implements OsgiPlatform {
 
 		try {
 			tempFileName = File.createTempFile(TMP_PREFIX, suffix);
-		}
-		catch (IOException ex) {
+		} catch (IOException ex) {
 			return new File(TMP_DIR_FALLBACK);
 		}
 
@@ -166,7 +166,7 @@ public class FelixPlatform4_2 implements OsgiPlatform {
 		tempFolder.mkdirs();
 		return tempFolder;
 	}
-	
+
 	/**
 	 * Configuration settings for the OSGi test run.
 	 * 
@@ -182,9 +182,9 @@ public class FelixPlatform4_2 implements OsgiPlatform {
 		// (5) Use the specified auto-deploy directory over default.
 		configProperties.setProperty(AutoProcessor.AUTO_DEPLOY_DIR_PROPERY, felixStorageDir.getAbsolutePath());
 
-	        // (6) Use the specified bundle cache directory over default.
+		// (6) Use the specified bundle cache directory over default.
 		configProperties.setProperty(Constants.FRAMEWORK_STORAGE, felixStorageDir.getAbsolutePath());
-		
+
 		configProperties.setProperty(Constants.FRAMEWORK_COMMAND_ABSPATH, felixStorageDir.getAbsolutePath());
 	}
 }
