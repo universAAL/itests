@@ -1,7 +1,7 @@
 /*
 Copyright 2011-2014 AGH-UST, http://www.agh.edu.pl
 Faculty of Computer Science, Electronics and Telecommunications
-Department of Computer Science 
+Department of Computer Science
 
 See the NOTICE file distributed with this work for additional
 information regarding copyright ownership
@@ -73,14 +73,14 @@ import org.w3c.dom.NodeList;
  * implementation. IntegrationTest extends class from Spring DM framework and
  * adds feature of setting up the TestCase with the use of Eclipse launch
  * configuration or Pax composite files.
- * 
+ *
  * Comment about logging: org.universAAL.middleware.container.utils.LogUtils
  * cannot be used because BundleContext (and therefore ModuleContext) does not
  * yet exist for the bundle in which integration tests are to be launched. Thus
  * exceptions are simple printed out to screen.
- * 
+ *
  * @author rotgier
- * 
+ *
  */
 public class IntegrationTest extends AbstractConfigurableBundleCreatorTests {
 
@@ -106,14 +106,14 @@ public class IntegrationTest extends AbstractConfigurableBundleCreatorTests {
 	/**
 	 * Symbolic name of bundle in which integration tests will be performed. The
 	 * name is extracted from manifest.
-	 * 
+	 *
 	 */
 	private String bundleSymbolicName;
 
 	/**
 	 * The version of bundle in which integration tests will be performed. The
 	 * version is extracted from manifest.
-	 * 
+	 *
 	 */
 	private String bundleVersion;
 
@@ -152,7 +152,7 @@ public class IntegrationTest extends AbstractConfigurableBundleCreatorTests {
 	 * </ul>
 	 * Run arguments and bundles.configuration.location can be overridden by
 	 * invocation of appropriate setter methods.
-	 * 
+	 *
 	 * @param eclipseLaunchConfiguration
 	 *            path to the launch configuration which will be used for
 	 *            setting up the OSGi platform in which TestCase will be
@@ -164,7 +164,7 @@ public class IntegrationTest extends AbstractConfigurableBundleCreatorTests {
 
 	/**
 	 * Method for logging.
-	 * 
+	 *
 	 * @param logMsg
 	 *            Log message to be printed.
 	 */
@@ -174,7 +174,7 @@ public class IntegrationTest extends AbstractConfigurableBundleCreatorTests {
 
 	/**
 	 * Formatting log messages with a use of String.format.
-	 * 
+	 *
 	 * @param format
 	 *            Format in accordance with String.format API.
 	 * @param args
@@ -205,7 +205,7 @@ public class IntegrationTest extends AbstractConfigurableBundleCreatorTests {
 	/**
 	 * Helper method for extracting zipped archive provided as input stream into
 	 * given directory.
-	 * 
+	 *
 	 * @param is
 	 * @param destDirStr
 	 */
@@ -299,7 +299,7 @@ public class IntegrationTest extends AbstractConfigurableBundleCreatorTests {
 
 	/**
 	 * Sets run arguments of uAAL platform.
-	 * 
+	 *
 	 * @param args
 	 *            Arguments have to provided as list of strings. There has to be
 	 *            even number of arguments. All odd strings are interpreted as
@@ -315,7 +315,7 @@ public class IntegrationTest extends AbstractConfigurableBundleCreatorTests {
 
 	/**
 	 * Sets run arguments of uAAL platform.
-	 * 
+	 *
 	 * @param p
 	 *            Properties which represent run arguments.
 	 */
@@ -327,7 +327,7 @@ public class IntegrationTest extends AbstractConfigurableBundleCreatorTests {
 	/**
 	 * Sets urls of pax artifacts which should be launched for integration
 	 * testing.
-	 * 
+	 *
 	 * @param urls
 	 *            List of pax artifacts urls.
 	 */
@@ -345,7 +345,7 @@ public class IntegrationTest extends AbstractConfigurableBundleCreatorTests {
 
 	/**
 	 * Sets bundles.configuration.location system property.
-	 * 
+	 *
 	 * @param path
 	 *            Path to which bundles.configuration.location is to be set.
 	 */
@@ -356,7 +356,7 @@ public class IntegrationTest extends AbstractConfigurableBundleCreatorTests {
 	/**
 	 * Sets flag which can force mvn url handler to look up only local maven
 	 * repository. Default value is false;
-	 * 
+	 *
 	 * @param useOnlyLocalRepo
 	 */
 	protected void setUseOnlyLocalRepo(final boolean useOnlyLocalRepo) {
@@ -367,7 +367,7 @@ public class IntegrationTest extends AbstractConfigurableBundleCreatorTests {
 	 * Sets a flag that ignores the last bundle in artefact.composite for run
 	 * this test. This enables running all the environment except the bundle
 	 * tested, or in certain cases fix some issues with double installing.
-	 * 
+	 *
 	 * @param ignoreLast
 	 */
 	protected void setIgnoreLastBudnle(final boolean ignoreLast) {
@@ -377,7 +377,7 @@ public class IntegrationTest extends AbstractConfigurableBundleCreatorTests {
 	/**
 	 * If set to true than version mismatch between bundle version specified in
 	 * pom and bundle version specified in the manifest is ignored.
-	 * 
+	 *
 	 */
 	public void setIgnoreVersionMismatch(final boolean ignoreVersionMismatch) {
 		this.ignoreVersionMismatch = ignoreVersionMismatch;
@@ -386,9 +386,9 @@ public class IntegrationTest extends AbstractConfigurableBundleCreatorTests {
 	/**
 	 * Helper class used for sorting bundles from the launch configuration by
 	 * the runlevel.
-	 * 
+	 *
 	 * @author rotgier
-	 * 
+	 *
 	 */
 	class BundleToLaunch {
 		BundleToLaunch(final String bundleUrl, final int runLevel) {
@@ -451,12 +451,12 @@ public class IntegrationTest extends AbstractConfigurableBundleCreatorTests {
 	 * repository there is a deadlock - bundle cannot be tested because it is
 	 * not in the repo and bundle cannot be installed in the repo because tests
 	 * fail.
-	 * 
+	 *
 	 * Additionally method rewrites bundle manifest for purpose of adding
 	 * imports to packages related to itests bundle.
-	 * 
+	 *
 	 * @throws IOException
-	 * 
+	 *
 	 */
 	private void prepareClassesToTests() throws Exception {
 		FileUtils.copyDirectory(new File("./target/classes"), new File("./target/test-classes"));
@@ -494,7 +494,7 @@ public class IntegrationTest extends AbstractConfigurableBundleCreatorTests {
 	 * This method checks if artifact of given mvn url should be launched for
 	 * integration test. For now method unfilters only the bundle in which the
 	 * integration test is enclosed.
-	 * 
+	 *
 	 * @param url
 	 * @return
 	 */
@@ -533,7 +533,7 @@ public class IntegrationTest extends AbstractConfigurableBundleCreatorTests {
 	 * extracts list of bundles and sorts it by the runlevel. Bundles are
 	 * wrapped in the org.springframework.core.io.Resource class as URLs with
 	 * "wrap" and "mvn" protocol.
-	 * 
+	 *
 	 * @param paxArgs
 	 *            pax run arguments from the launch configurations provided as
 	 *            DOM NodeList
@@ -577,7 +577,7 @@ public class IntegrationTest extends AbstractConfigurableBundleCreatorTests {
 	 * line format (-Dkey=value ... -Dkey=value). Arguments are set as system
 	 * properties but only if they were not explicitly set before by means of
 	 * setter methods.
-	 * 
+	 *
 	 * @param vmArgs
 	 *            Arguments to JVM.
 	 */
@@ -614,7 +614,7 @@ public class IntegrationTest extends AbstractConfigurableBundleCreatorTests {
 	/**
 	 * This method processes configured eclipse launch configuration. Extracts
 	 * list of bundles and sets run arguments as system properties.
-	 * 
+	 *
 	 * @return Returns list of resources.
 	 */
 	private List<Resource> processEclipseLaunhFile() {
@@ -656,7 +656,7 @@ public class IntegrationTest extends AbstractConfigurableBundleCreatorTests {
 	/**
 	 * This method processes configured urls of pax artifacts (composites and
 	 * bundles) and returns single list of bundles.
-	 * 
+	 *
 	 * @return Returns list of resources.
 	 * @throws Exception
 	 *             This method can throw multiple exceptions so it was
@@ -702,7 +702,7 @@ public class IntegrationTest extends AbstractConfigurableBundleCreatorTests {
 	/**
 	 * Adds additionall dependencies which are needed for launching uAAL
 	 * Integration Test.
-	 * 
+	 *
 	 * @return Returns array of resources.
 	 */
 	private Resource[] insertNeededDeps(final List<Resource> bundles) throws Exception {
@@ -728,7 +728,7 @@ public class IntegrationTest extends AbstractConfigurableBundleCreatorTests {
 	 * "bundles.configuration.location" JVM argument provided in the launch
 	 * configuration is ignored and the "bundlesConfLocation" property is used
 	 * instead.
-	 * 
+	 *
 	 * @return Returns array of resources.
 	 */
 	@Override
@@ -761,9 +761,9 @@ public class IntegrationTest extends AbstractConfigurableBundleCreatorTests {
 	 * The class is used for intercepting installation of test bundle. When
 	 * interception occurs JunitTestActivator is created (using ClassLoader of
 	 * itests bundle) and it's start method is invoked.
-	 * 
+	 *
 	 * @author rotgier
-	 * 
+	 *
 	 */
 	public class FakeBundleContext implements InvocationHandler {
 

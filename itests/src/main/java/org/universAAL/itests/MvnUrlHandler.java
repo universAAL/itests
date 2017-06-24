@@ -1,7 +1,7 @@
 /*
 Copyright 2011-2014 AGH-UST, http://www.agh.edu.pl
 Faculty of Computer Science, Electronics and Telecommunications
-Department of Computer Science 
+Department of Computer Science
 
 See the NOTICE file distributed with this work for additional
 information regarding copyright ownership
@@ -36,9 +36,9 @@ import org.ops4j.util.property.PropertiesPropertyResolver;
 /**
  * Class used for intercepting opening connection to maven url (such url is
  * starting with "mvn:).
- * 
+ *
  * @author rotgier
- * 
+ *
  */
 public class MvnUrlHandler extends Handler {
 
@@ -55,7 +55,7 @@ public class MvnUrlHandler extends Handler {
 
 	/**
 	 * Simply the constructor.
-	 * 
+	 *
 	 * @param useOnlyLocalRepo
 	 *            Parameter for setting useOnlyLocalRepo field.
 	 */
@@ -75,9 +75,9 @@ public class MvnUrlHandler extends Handler {
 	/**
 	 * Helper classes for intercepting referencing to MavenSettings and
 	 * restricting repositories list when necessary.
-	 * 
+	 *
 	 * @author rotgier
-	 * 
+	 *
 	 */
 	private class ControlledMavenSettings implements MavenSettings {
 

@@ -90,7 +90,7 @@ public class FelixPlatform4_2 implements OsgiPlatform {
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * This implementation considers existing system properties as well as
 	 * platform specific ones, defined in this class. The system properties are
 	 * convenient for changing the configuration directly from the command line
@@ -169,7 +169,7 @@ public class FelixPlatform4_2 implements OsgiPlatform {
 
 	/**
 	 * Configuration settings for the OSGi test run.
-	 * 
+	 *
 	 * @return
 	 */
 	private void createStorageDir(Properties configProperties) {
