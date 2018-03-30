@@ -22,7 +22,9 @@
 		<mavenVersion>2.2.1</mavenVersion>
 		<maven.compile.source>1.5</maven.compile.source>
 		<maven.compile.target>1.5</maven.compile.target>
-		<org.slf4j.version>1.6.1</org.slf4j.version>
+		<!-- slf4j version needs to remain 1.5.0 it is required by stringframework,
+		     set here to ensure it is downloaded at some point -->
+		<org.slf4j.version>1.5.0</org.slf4j.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -118,7 +120,7 @@
 			<groupId>org.slf4j</groupId>
 			<artifactId>com.springsource.slf4j.org.apache.commons.logging</artifactId>
 			<version>${org.slf4j.version}</version>
-		</dependency>
+		</dependency> 
 		<dependency>
 			<groupId>edu.emory.mathcs.backport</groupId>
 			<artifactId>com.springsource.edu.emory.mathcs.backport</artifactId>
