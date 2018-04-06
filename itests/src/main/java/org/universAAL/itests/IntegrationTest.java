@@ -290,7 +290,7 @@ public class IntegrationTest extends AbstractConfigurableBundleCreatorTests {
 	 * be converted to an integer.
 	 * <li>3 - LOG_INFO: Used for informational messages
 	 * <li>4 - LOG_DEBUG: Used for debug messages
-	 * <ul>
+	 * </ul>
 	 * Default value is LOG_DEBUG.
 	 */
 	protected void setLogLevel(final int level) {
